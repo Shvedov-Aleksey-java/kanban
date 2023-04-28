@@ -1,14 +1,13 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 
 public class Manager {
     private int id = 1;
 
-    HashMap<Integer, Task> task = new HashMap<>();
-    HashMap<Task, HashMap<Integer, Epic>> epic = new HashMap<>();
-    HashMap<Epic, HashMap<Integer, Subtask>> subtask = new HashMap<>();
+    private HashMap<Integer, Task> task = new HashMap<>();
+    private HashMap<Integer, HashMap<Integer, Epic>> epic = new HashMap<>();
+    private HashMap<Integer, HashMap<Integer, Subtask>> subtask = new HashMap<>();
 
 
     void put(Object o){
@@ -19,130 +18,92 @@ public class Manager {
                 task.put(id, (Task) o);
                 id++;
             } else {
-                Task t = task.get(((Task) o).getIdNumber());
-                HashMap<Integer, Epic> map = epic.get(t);
-                ((Task) o).setStatus(t.getStatus());
-                epic.remove(t);
-                task.put(id, (Task) o);
-                epic.put((Task) o, map);
+                ((Task) o).setStatus(task.get(((Task) o).getIdNumber()).getStatus());
+                task.put(((Task) o).getIdNumber(), (Task) o);
             }
-
         }
+        statusUpdates();
     }
 
     void put(Object o, Object o1){
         if (o instanceof Task && o1 instanceof Epic){
-            if (task.containsValue(o)){
-                if (((Epic) o1).getIdNumber() == 0){
-                    ((Epic) o1).setIdNumber(id);
-                    ((Epic) o1).setStatus(Progress.NEW);
-                    epic.put((Task) o, new HashMap<>());
-                    epic.get(o).put(id, (Epic) o1);
-                    id++;
-                    ((Task) o).setStatus(Progress.IN_PROGRESS);
-                }else {
-                    for (int i: epic.get(o).keySet()){
-                        Epic e = epic.get(o).get(i);
-                        HashMap<Integer, Subtask> map = subtask.get(e);
-                        ((Epic) o1).setStatus(e.getStatus());
-                        subtask.remove(e);
-                        subtask.put((Epic) o1, map);
-                    }
-                    ((Epic) o1).setStatus(epic.get(o).get(((Epic) o1).getIdNumber()).getStatus());
-                    epic.get(o).put(((Epic) o1).getIdNumber(), (Epic) o1);
-
-                }
-            }
+          if (epic.containsKey(((Task) o).getIdNumber())){
+              if (((Epic) o1).getIdNumber() == 0){
+                  ((Epic) o1).setIdNumber(id);
+                  ((Epic) o1).setStatus(Progress.NEW);
+                  ((Task) o).setStatus(Progress.IN_PROGRESS);
+                  epic.get(((Task) o).getIdNumber()).put(id, (Epic) o1);
+                  id++;
+              }else {
+                  epic.get(((Epic) o1).getIdNumber()).put(((Epic) o1).getIdNumber(), (Epic) o1);
+              }
+          }else {
+              ((Epic) o1).setIdNumber(id);
+              ((Epic) o1).setStatus(Progress.NEW);
+              ((Task) o).setStatus(Progress.IN_PROGRESS);
+              epic.put(((Task) o).getIdNumber(), new HashMap<>());
+              epic.get(((Task) o).getIdNumber()).put(id, (Epic) o1);
+              id++;
+          }
         } else if (o instanceof Epic && o1 instanceof Subtask){
-            boolean is = false;
-            for (Task i: epic.keySet()){
-                if (epic.get(i).containsValue(o))is = true;
+           if (subtask.containsKey(((Epic) o).getIdNumber())){
+               if (((Subtask) o1).getIdNumber() == 0){
+                   ((Subtask) o1).setIdNumber(id);
+                   ((Subtask) o1).setStatus(Progress.NEW);
+                   ((Epic) o).setStatus(Progress.IN_PROGRESS);
+                   subtask.get(((Epic) o).getIdNumber()).put(id, (Subtask) o1);
+                   id++;
+               }else {
+                   subtask.get(((Epic) o).getIdNumber()).put(((Subtask) o1).getIdNumber(), (Subtask) o1);
+               }
+           }else {
+               ((Subtask) o1).setIdNumber(id);
+               ((Subtask) o1).setStatus(Progress.NEW);
+               ((Epic) o).setStatus(Progress.IN_PROGRESS);
+               subtask.put(((Epic) o).getIdNumber(), new HashMap<>());
+               subtask.get(((Epic) o).getIdNumber()).put(id, (Subtask) o1);
+               id++;
+           }
             }
-            if (is){
-                if (((Subtask) o1).getIdNumber() == 0){
-                    ((Subtask) o1).setIdNumber(id);
-                    ((Subtask) o1).setStatus(Progress.NEW);
-                    subtask.put((Epic) o, new HashMap<>());
-                    subtask.get(o).put(id, (Subtask) o1);
-                    id++;
-                    ((Epic) o).setStatus(Progress.IN_PROGRESS);
-                } else {
-                    ((Subtask) o1).setStatus(subtask.get(o).get(((Subtask) o1).getIdNumber()).getStatus());
-                    subtask.get(o).put(((Subtask) o1).getIdNumber(), (Subtask) o1);
-                }
-            }
+        statusUpdates();
         }
-    }
 
     Object get(int id){
-        for (int i: task.keySet()){
-            if (id == i){
-                return task.get(id);
-            }
+        if (task.containsKey(id)){
+            return task.get(id);
         }
-        for (Task i: epic.keySet()){
-            for (int j: epic.get(i).keySet()){
-                if (j == id){
-                    return epic.get(i).get(j);
-                }
-            }
+        for (int i:epic.keySet()){
+            if (epic.get(i).containsKey(id))return epic.get(i).get(id);
         }
-        for (Epic i: subtask.keySet()){
-            for (int j: subtask.get(i).keySet()){
-                if (j == id){
-                    return subtask.get(i).get(j);
-                }
-            }
+        for (int i: subtask.keySet()){
+            if (subtask.get(i).containsKey(id))return subtask.get(i).get(id);
         }
         return null;
     }
 
     void remove(int id){
         if (task.containsKey(id)){
-                Task t = task.get(id);
-                if (epic.containsKey(t)){
-                    for (int i:epic.get(t).keySet()){
-                        Epic e = epic.get(t).get(i);
-                        subtask.remove(e);
-                    }
-                    epic.remove(t);
+            if (epic.containsKey(id)){
+                for (int i: epic.get(id).keySet()){
+                    if (subtask.containsKey(i))subtask.remove(i);
                 }
-                task.remove(id);
+                epic.remove(id);
+            }
+            task.remove(id);
         }
-
-        for (Task i: epic.keySet()){
-            for (int j:epic.get(i).keySet()){
-                Epic e = epic.get(i).get(j);
-                if (e.getIdNumber() == id){
-                    subtask.remove(e);
-                    epic.remove(i);
-                }
+        for (int i: epic.keySet()){
+            if (epic.get(i).containsKey(id)){
+                if (subtask.containsKey(id))subtask.remove(id);
+                epic.get(i).remove(id);
             }
         }
-
-        for (Epic i: subtask.keySet()){
-            for (int j: subtask.get(i).keySet()){
-                Subtask s = subtask.get(i).get(j);
-                if (s.getIdNumber() == id){
-                    subtask.get(i).remove(j);
-                }
+        for (int i: subtask.keySet()){
+            if (subtask.get(i).containsKey(id)){
+                subtask.get(i).remove(id);
             }
-            }
-
-        for (Task i: epic.keySet()){
-            int idT = epic.get(i).size();
-            for (Epic j:subtask.keySet()){
-                int idS = subtask.get(j).size();
-                for (int l: subtask.get(j).keySet()){
-                    if (subtask.get(j).get(l).getStatus() == Progress.DONE)idS--;
-                }
-                if (idS == 0){
-                    j.setStatus(Progress.DONE);
-                    idT--;
-                }
-            }
-            if (idT == 0)i.setStatus(Progress.DONE);
         }
+
+        statusUpdates();
         }
 
     void clear(){
@@ -151,62 +112,118 @@ public class Manager {
         task.clear();
     }
 
-    List<String> listOfTask(){
-        List<String> listOfTask = new ArrayList<>();
-        for (int i: task.keySet()){
-            Task t = task.get(i);
-            listOfTask.add(t.getName());
-            if (epic.containsKey(t)){
-                for (int j:epic.get(t).keySet()){
-                    Epic e = epic.get(t).get(j);
-                    listOfTask.add(e.getName());
-                    if (subtask.containsKey(e)){
-                        for (int l: subtask.get(e).keySet()){
-                            Subtask s = subtask.get(e).get(l);
-                            listOfTask.add(s.getName());
+    String listOfTask(){
+        String strings = "";
+        if (!(task.isEmpty())){
+            for (int i: task.keySet()){
+                Task t  = task.get(i);
+                strings += "имя: " + t.getName() +
+                        " описание: " + t.getDescription() +
+                        " статус: " + t.getStatus() +
+                        " ид: " + t.getIdNumber() +
+                        "\n";
+                if(epic.containsKey(i)){
+                    for (int j: epic.get(i).keySet()){
+                        Epic e = epic.get(i).get(j);
+                        strings += "имя: " + e.getName() +
+                                " описание: " + e.getDescription() +
+                                " статус: " + e.getStatus() +
+                                " ид: " + e.getIdNumber() +
+                                "\n";
+                        if (subtask.containsKey(j)){
+                            for (int l: subtask.get(j).keySet()){
+                                Subtask s = subtask.get(j).get(l);
+                                strings += "имя: " + s.getName() +
+                                        " описание: " + s.getDescription() +
+                                        " статус: " + s.getStatus() +
+                                        " ид: " + s.getIdNumber() +
+                                        "\n";
+                            }
                         }
                     }
                 }
             }
         }
-        return listOfTask;
+
+
+        return strings;
     }
 
-    List<String> listOfTask(Object o){
-        List<String> listOfTask = new ArrayList<>();
-        if (o instanceof Epic && subtask.containsKey(o)){
-            for (Epic i: subtask.keySet()){
-                if (i.equals(o)){
-                    for (int j:subtask.get(i).keySet()){
-                        listOfTask.add(subtask.get(i).get(j).getName());
-                    }
+    String listOfTask(Object o){
+        String strings = "";
+        if (o instanceof Epic){
+            if (subtask.containsKey(((Epic) o).getIdNumber())){
+                for (int i: subtask.get(((Epic) o).getIdNumber()).keySet()){
+                    Subtask s = subtask.get(((Epic) o).getIdNumber()).get(i);
+                    strings += "имя: " + s.getName() +
+                            " описание: " + s.getDescription() +
+                            " статус: " + s.getStatus() +
+                            " ид: " + s.getIdNumber() +
+                            "\n";
                 }
             }
         }
-        return listOfTask;
+        return strings;
     }
 
     void setStatus(Object o, Progress p){
         if (o instanceof Subtask && p != null) {
             ((Subtask) o).setStatus(p);
-
-
-            for (Task i: epic.keySet()){
-                int idT = epic.get(i).size();
-                for (Epic j:subtask.keySet()){
-                    int idS = subtask.get(j).size();
-                    for (int l: subtask.get(j).keySet()){
-                        if (subtask.get(j).get(l).getStatus() == Progress.DONE)idS--;
-                    }
-                    if (idS == 0){
-                        j.setStatus(Progress.DONE);
-                        idT--;
-                    }
-                }
-                if (idT == 0)i.setStatus(Progress.DONE);
-            }
+            statusUpdates();
         }
 
+    }
+
+    private void statusUpdates(){
+       if (!(task.isEmpty())){
+           Task t;
+           for (int i:task.keySet()){
+               t = task.get(i);
+               if (epic.containsKey(i)){
+                   Epic e;
+                   int sd = epic.get(i).size();
+                   int dt = epic.get(i).size();
+                   if (!(epic.get(i).isEmpty())){
+                       for (int j:epic.get(i).keySet()){
+                           e = epic.get(i).get(j);
+                           if (subtask.containsKey(j)){
+                               Subtask s;
+                               int q = subtask.get(j).size();
+                               int w = subtask.get(j).size();
+                               for (int l: subtask.get(j).keySet()){
+                                   s = subtask.get(j).get(l);
+                                   if (s.getStatus() == Progress.NEW){
+                                       q--;
+                                   }else if (s.getStatus() == Progress.DONE){
+                                       w--;
+                                   }
+                               }
+                               if (q == 0){
+                                   e.setStatus(Progress.NEW);
+                                   sd--;
+                               } else if (w == 0){
+                                   e.setStatus(Progress.DONE);
+                                   dt--;
+                               } else {
+                                   e.setStatus(Progress.IN_PROGRESS);
+                               }
+                           }else {
+                               e.setStatus(Progress.NEW);
+                           }
+                       }
+                      if (sd == 0){
+                          t.setStatus(Progress.NEW);
+                      } else if (dt == 0){
+                          t.setStatus(Progress.DONE);
+                      }else {
+                          t.setStatus(Progress.IN_PROGRESS);
+                      }
+                   }
+               }else {
+                   t.setStatus(Progress.NEW);
+               }
+           }
+       }
     }
 
 
