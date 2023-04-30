@@ -3,7 +3,7 @@ package manager;
 import task.Epic;
 import task.Progress;
 import task.Subtask;
-import task.Tasks;
+import task.Task;
 
 import java.util.HashMap;
 
@@ -11,222 +11,157 @@ import java.util.HashMap;
 public class TaskManager {
     private int generatorId = 1;
 
-    private HashMap<Integer, Tasks> tasks = new HashMap<>();
-    private HashMap<Integer, HashMap<Integer, Epic>> epic = new HashMap<>();
-    private HashMap<Integer, HashMap<Integer, Subtask>> subtask = new HashMap<>();
+    private HashMap<Integer, Task> tasks = new HashMap<>();
+    private HashMap<Integer, Epic> epics = new HashMap<>();
+    private HashMap<Integer, Subtask> subtasks = new HashMap<>();
 
-    public void addTasks(Tasks tasks) {
-        if (tasks == null) return;
-        if (tasks.getIdNumber() == 0) {
-            tasks.setIdNumber(generatorId);
-            tasks.setStatus(Progress.NEW);
-            this.tasks.put(generatorId, tasks);
-            generatorId++;
-        } else {
-            return;
+    public int addTask(Task task) {
+        if (task != null){
+            int id = ++generatorId;
+            task.setStatus(Progress.NEW);
+            task.setId(id);
+            tasks.put(id, task);
+            return id;
         }
-        statusUpdates();
+        return 0;
     }
 
-    public void addEpic(int personalIdTask, Epic epic) {
-        if (epic == null) return;
-        if (this.tasks.containsKey(personalIdTask) && epic.getIdNumber() == 0) {
-            epic.setIdNumber(generatorId);
+    public int addEpic(Epic epic) {
+        if (epic != null){
+            int id = ++generatorId;
             epic.setStatus(Progress.NEW);
-            epic.setKeyId(personalIdTask);
-            this.tasks.get(personalIdTask).getPersonalIds().add(generatorId);
-            if (this.epic.containsKey(personalIdTask)) {
-                this.epic.get(personalIdTask).put(generatorId, epic);
-                generatorId++;
-            } else {
-                this.epic.put(personalIdTask, new HashMap<>());
-                this.epic.get(personalIdTask).put(generatorId, epic);
-                generatorId++;
-            }
-        } else {
-            return;
+            epic.setId(id);
+            epics.put(id, epic);
+            return id;
         }
-        statusUpdates();
+        return 0;
     }
 
-    public void addSubtask(int personalIdEpic, Subtask subtask) {
-        if (subtask == null) return;
-        for (int i : this.epic.keySet()) {
-            if (this.epic.get(i).containsKey(personalIdEpic) && subtask.getIdNumber() == 0) {
-                subtask.setIdNumber(generatorId);
-                subtask.setStatus(Progress.NEW);
-                subtask.setKeyId(personalIdEpic);
-                this.epic.get(i).get(personalIdEpic).getPersonalIds().add(generatorId);
-                if (this.subtask.containsKey(personalIdEpic)) {
-                    this.subtask.get(personalIdEpic).put(generatorId, subtask);
-                    generatorId++;
-                } else {
-                    this.subtask.put(personalIdEpic, new HashMap<>());
-                    this.subtask.get(personalIdEpic).put(generatorId, subtask);
-                    generatorId++;
-                }
+    public Integer addNewSubtask(Subtask subtask) {
+        if (subtask != null){
+            final int epicId = subtask.getEpicId();
+            Epic epic = epics.get(epicId);
+            if (epic == null) {
+                return null;
             }
-        }
-        statusUpdates();
-
-    }
-
-    public Tasks getTasks(int id) {
-        if (this.tasks.containsKey(id)) {
-            return this.tasks.get(id);
+            final int id = ++generatorId;
+            subtask.setId(id);
+            subtask.setStatus(Progress.NEW);
+            subtasks.put(id, subtask);
+            epic.getSubtaskIds().add(id);
+            return id;
         }
         return null;
+    }
+
+    public Task getTasks(int id) {
+        return tasks.get(id);
     }
 
     public Epic getEpic(int id) {
-        for (int i : epic.keySet()) {
-            if (epic.get(i).containsKey(id)) return epic.get(i).get(id);
-        }
-        return null;
+        return epics.get(id);
     }
 
     public Subtask getSubtask(int id) {
-        for (int i : subtask.keySet()) {
-            if (subtask.get(i).containsKey(id)) return subtask.get(i).get(id);
-        }
-        return null;
+        return subtasks.get(id);
     }
 
     public void deleteTasks(int id) {
-        if (tasks.containsKey(id)) {
-            if (epic.containsKey(id)) {
-                for (int i : epic.get(id).keySet()) {
-                    if (subtask.containsKey(i)) subtask.remove(i);
-                }
-                epic.remove(id);
-            }
-            tasks.remove(id);
-        }
-        statusUpdates();
+        tasks.remove(id);
     }
 
     public void deleteEpic(int id) {
-        for (int i : epic.keySet()) {
-            if (epic.get(i).containsKey(id)) {
-                if (subtask.containsKey(id)) subtask.remove(id);
-                epic.get(i).remove(id);
-            }
-        }
-        statusUpdates();
+       epics.remove(id);
     }
 
     public void deleteSubtask(int id) {
-        for (int i : subtask.keySet()) {
-            if (subtask.get(i).containsKey(id)) subtask.get(i).remove(id);
-        }
-        statusUpdates();
+        int idUpdate = getSubtask(id).getEpicId();
+        subtasks.remove(id);
+        updateEpicStatus(idUpdate);
     }
 
-    public void updateTask(Tasks tasks) {
-        if (tasks == null) return;
-        if (this.tasks.containsKey(tasks.getIdNumber())) {
-            this.tasks.put(tasks.getIdNumber(), tasks);
-        }
-        statusUpdates();
+    public void updateTask(Task task) {
+        tasks.put(task.getId(), task);
     }
 
     public void updateEpic(Epic epic) {
-        if (epic == null) return;
-        if (this.epic.containsKey(epic.getKeyId()) && this.epic.get(epic.getKeyId()).containsKey(epic.getIdNumber())) {
-            this.epic.get(epic.getKeyId()).put(epic.getIdNumber(), epic);
-        }
-        statusUpdates();
+        epics.put(epic.getId(), epic);
     }
 
     public void updateSubtask(Subtask subtask) {
-        if (subtask == null) return;
-        if (this.subtask.containsKey(subtask.getKeyId()) && this.subtask.get(subtask.getKeyId()).containsKey(subtask.getIdNumber())) {
-            this.subtask.get(subtask.getKeyId()).put(subtask.getIdNumber(), subtask);
-        }
-        statusUpdates();
+        subtasks.put(subtask.getId(), subtask);
+        updateEpicStatus(subtask.getEpicId());
     }
 
-    void clear() {
-        subtask.clear();
-        epic.clear();
+    public void clearTask() {
         tasks.clear();
     }
 
-    public String listOfTask() {
+    public void clearEpic(){epics.clear();}
+
+    public void clearSubtask(){subtasks.clear();}
+
+    public String listTask() {
         String strings = "";
-        if (!(tasks.isEmpty())) {
-            for (int i : tasks.keySet()) {
-                Tasks t = tasks.get(i);
-                strings += "имя: " + t.getName() + " описание: " + t.getDescription() + " статус: " + t.getStatus() + " ид: " + t.getIdNumber() + "\n";
-                if (epic.containsKey(i)) {
-                    for (int j : epic.get(i).keySet()) {
-                        Epic e = epic.get(i).get(j);
-                        strings += "имя: " + e.getName() + " описание: " + e.getDescription() + " статус: " + e.getStatus() + " ид: " + e.getIdNumber() + "\n";
-                        if (subtask.containsKey(j)) {
-                            for (int l : subtask.get(j).keySet()) {
-                                Subtask s = subtask.get(j).get(l);
-                                strings += "имя: " + s.getName() + " описание: " + s.getDescription() + " статус: " + s.getStatus() + " ид: " + s.getIdNumber() + "\n";
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-        return strings;
-    }
-
-    String listOfTask(Object o) {
-        String strings = "";
-        if (o instanceof Epic) {
-            if (subtask.containsKey(((Epic) o).getIdNumber())) {
-                for (int i : subtask.get(((Epic) o).getIdNumber()).keySet()) {
-                    Subtask s = subtask.get(((Epic) o).getIdNumber()).get(i);
-                    strings += "имя: " + s.getName() + " описание: " + s.getDescription() + " статус: " + s.getStatus() + " ид: " + s.getIdNumber() + "\n";
-                }
-            }
+        for (int i: tasks.keySet()){
+            strings += tasks.get(i).toString() + "\n";
         }
         return strings;
     }
 
-    public void setStatus(Object o, Progress p) {
-        if (o instanceof Subtask && p != null) {
-            ((Subtask) o).setStatus(p);
-            statusUpdates();
+    public String listEpic() {
+        String strings = "";
+        for (int i: epics.keySet()){
+            strings += epics.get(i).toString() + "\n";
         }
-
+        return strings;
     }
 
-    private void statusUpdates() {
-        if (!(this.epic.isEmpty())) {
-            for (int i : this.epic.keySet()) {
-                for (int j : this.epic.get(i).keySet()) {
-                    Epic epic = this.epic.get(i).get(j);
-                    if (this.subtask.containsKey(j)) {
-                        int isNewLengthMapEpic = this.subtask.get(j).size();
-                        int isDoneLengthMapEpic = this.subtask.get(j).size();
-                        for (int l : this.subtask.get(j).keySet()) {
-                            Subtask subtask = this.subtask.get(j).get(l);
-                            if (subtask.getStatus() == Progress.DONE) {
-                                isDoneLengthMapEpic--;
-                            } else if (subtask.getStatus() == Progress.NEW) {
-                                isNewLengthMapEpic--;
-                            }
-                        }
+    public String listSubtask() {
+        String strings = "";
+        for (int i: subtasks.keySet()){
+            strings += subtasks.get(i).toString() + "\n";
+        }
+        return strings;
+    }
 
-                        if (isDoneLengthMapEpic == 0) {
-                            epic.setStatus(Progress.DONE);
-                        } else if (isNewLengthMapEpic == 0) {
-                            epic.setStatus(Progress.NEW);
-                        } else {
-                            epic.setStatus(Progress.IN_PROGRESS);
-                        }
-                    }
+    public String listEpicOfSubtask(Epic epic) {
+        String strings = "";
+        if (epic != null){
+            for (int i: epic.getSubtaskIds()){
+                strings += subtasks.get(i).toString() + "\n";
+            }
+        }
+        return strings;
+    }
 
+    public void setStatus(Subtask subtask, Progress progress) {
+        if (subtask != null && progress != null){
+            subtask.setStatus(progress);
+        }
+        updateEpicStatus(subtask.getEpicId());
+    }
 
+    private void updateEpicStatus(int id){
+        if (epics.get(id).getSubtaskIds().size() != 0){
+            int progressDone = epics.get(id).getSubtaskIds().size();
+            int progressNew = epics.get(id).getSubtaskIds().size();
+            for (int i: epics.get(id).getSubtaskIds()){
+                if (subtasks.get(i).getStatus() == Progress.DONE){
+                    progressDone--;
+                } else if (subtasks.get(i).getStatus() == Progress.NEW){
+                    progressNew--;
                 }
             }
+            if (progressDone == 0){
+                getEpic(id).setStatus(Progress.DONE);
+            } else if (progressNew == 0){
+                getEpic(id).setStatus(Progress.NEW);
+            } else {
+                getEpic(id).setStatus(Progress.IN_PROGRESS);
+            }
+        } else {
+            epics.get(id).setStatus(Progress.NEW);
         }
     }
 
