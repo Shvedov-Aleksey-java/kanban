@@ -4,6 +4,8 @@ import task.Progress;
 import task.Subtask;
 import task.Task;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -19,13 +21,29 @@ public class Main {
         int subtask1 = manager.addNewSubtask(new Subtask("подзадача 2", "описание 2").setEpicId(epic));
         int subtask2 = manager.addNewSubtask(new Subtask("подзадача 3", "описание 3").setEpicId(epic1));
 
-        System.out.println(manager.listTask() + manager.listEpic() + manager.listSubtask());
-        manager.setStatus(manager.getSubtask(subtask), Progress.DONE);
+        List<Task> tasks = manager.getTasks();
+        List<Epic> epics = manager.getEpics();
+        List<Subtask> subtasks = manager.getSubtasks();
 
-        System.out.println(manager.listTask() + manager.listEpic() + manager.listSubtask());
+        for (Task i: tasks){
+            System.out.println(i.toString());
+        }
+        for (Epic i: epics){
+            System.out.println(i.toString());
+        }
+        for (Subtask i: subtasks){
+            System.out.println(i.toString());
+        }
         manager.deleteEpic(epic);
-
-        System.out.println(manager.listTask() + manager.listEpic() + manager.listSubtask());
+        for (Task i: tasks){
+            System.out.println(i.toString());
+        }
+        for (Epic i: epics){
+            System.out.println(i.toString());
+        }
+        for (Subtask i: subtasks){
+            System.out.println(i.toString());
+        }
 
         }
     }
