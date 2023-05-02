@@ -17,18 +17,15 @@ public class TaskManager {
     private HashMap<Integer, Subtask> subtasks = new HashMap<>();
 
     public ArrayList<Task> getTasks() {
-        ArrayList<Task> taskArrayList = new ArrayList<>(tasks.values());
-        return taskArrayList;
+        return new ArrayList<>(tasks.values());
     }
 
     public ArrayList<Epic> getEpics() {
-        ArrayList<Epic> epicArrayList = new ArrayList<>(epics.values());
-        return epicArrayList;
+        return new ArrayList<>(epics.values());
     }
 
     public ArrayList<Subtask> getSubtasks() {
-        ArrayList<Subtask> subtaskArrayList = new ArrayList<>(subtasks.values());
-        return subtaskArrayList;
+        return new ArrayList<>(subtasks.values());
     }
 
     public Integer addTask(Task task) {
@@ -87,7 +84,7 @@ public class TaskManager {
     }
 
     public void deleteEpic(int id) {
-       epics.remove(id);
+        epics.remove(id);
     }
 
     public void deleteSubtask(int id) {
@@ -131,8 +128,7 @@ public class TaskManager {
         if (epic == null) {
             return;
         }
-        savedSubtask.setName(subtask.getName());
-        savedSubtask.setDescription(subtask.getDescription());
+        subtasks.put(id, savedSubtask);
         updateEpicStatus(subtask.getEpicId());
     }
 
@@ -140,13 +136,14 @@ public class TaskManager {
         tasks.clear();
     }
 
-    public void clearEpics(){
+    public void clearEpics() {
         epics.clear();
-        subtasks.clear();}
-
-    public void clearSubtasks(){
         subtasks.clear();
-        for (int i: epics.keySet()){
+    }
+
+    public void clearSubtasks() {
+        subtasks.clear();
+        for (int i : epics.keySet()) {
             epics.get(i).setStatus(Progress.NEW);
             epics.get(i).getSubtaskIds().clear();
         }
@@ -164,26 +161,31 @@ public class TaskManager {
         return tasks;
     }
 
-    public void updateEpicStatus(int id){
-        if (epics.get(id).getSubtaskIds().size() != 0){
-            int progressDone = epics.get(id).getSubtaskIds().size();
-            int progressNew = epics.get(id).getSubtaskIds().size();
-            for (int i: epics.get(id).getSubtaskIds()){
-                if (subtasks.get(i).getStatus() == Progress.DONE){
+    public void updateEpicStatus(int id) {
+        Epic epic = epics.get(id);
+        if (epic == null) return;
+        int epicSubtasksSize = epic.getSubtaskIds().size();
+        if (epicSubtasksSize != 0) {
+            int progressDone = epicSubtasksSize;
+            int progressNew = epicSubtasksSize;
+            for (int i : epics.get(id).getSubtaskIds()) {
+                if (subtasks.get(i).getStatus() == Progress.DONE) {
                     progressDone--;
-                } else if (subtasks.get(i).getStatus() == Progress.NEW){
+                } else if (subtasks.get(i).getStatus() == Progress.NEW) {
                     progressNew--;
                 }
             }
-            if (progressDone == 0){
+            if (progressDone == 0) {
                 getEpic(id).setStatus(Progress.DONE);
-            } else if (progressNew == 0){
+            } else if (progressNew == 0) {
                 getEpic(id).setStatus(Progress.NEW);
             } else {
                 getEpic(id).setStatus(Progress.IN_PROGRESS);
             }
+
         } else {
             epics.get(id).setStatus(Progress.NEW);
+
         }
     }
 
