@@ -1,4 +1,5 @@
-import manager.TaskManager;
+import manager.InMemoryTaskManager;
+import manager.Managers;
 import task.Epic;
 import task.Subtask;
 import task.Task;
@@ -9,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Поехали!");
-        TaskManager manager = new TaskManager();
+        InMemoryTaskManager manager = new InMemoryTaskManager();
         int task = manager.addTask(new Task("задача 1", "описание 1"));
         int task1 = manager.addTask(new Task("задача 2", "описание 2"));
 
