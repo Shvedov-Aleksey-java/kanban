@@ -1,5 +1,6 @@
 import manager.InMemoryTaskManager;
 import manager.Managers;
+import manager.TaskManager;
 import task.Epic;
 import task.Subtask;
 import task.Task;
@@ -10,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Поехали!");
-        InMemoryTaskManager manager = new InMemoryTaskManager();
+        TaskManager manager = Managers.getDefault();
         int task = manager.addTask(new Task("задача 1", "описание 1"));
         int task1 = manager.addTask(new Task("задача 2", "описание 2"));
 
@@ -24,6 +25,11 @@ public class Main {
         List<Task> tasks = manager.getTasks();
         List<Epic> epics = manager.getEpics();
         List<Subtask> subtasks = manager.getSubtasks();
+        manager.getSubtask(subtask);
+        manager.getSubtask(subtask1);
+        manager.getEpic(epic);
+        List<Task> tasks1 = manager.getHistory();
+        System.out.println(tasks1.toString());
 
         for (Task i: tasks){
             System.out.println(i.toString());

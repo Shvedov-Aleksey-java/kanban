@@ -5,9 +5,26 @@ import task.Subtask;
 import task.Task;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface TaskManager {
+
+    Task getTask(int id);
+
+    HashMap<Integer, Epic> epics();
+
+    HashMap<Integer, Subtask> subtasks();
+
+    HashMap<Integer, Task> tasks();
+
+    ArrayList<Task> getTasks();
+
+    ArrayList<Epic> getEpics();
+
+    ArrayList<Subtask> getSubtasks();
+
+    InMemoryHistoryManager historyManager();
 
     List<Task> getHistory();
 
@@ -16,8 +33,6 @@ public interface TaskManager {
     Integer addEpic(Epic epic);
 
     Integer addNewSubtask(Subtask subtask);
-
-    Task getTasks(int id);
 
     Epic getEpic(int id);
 
@@ -41,5 +56,5 @@ public interface TaskManager {
 
     void clearSubtasks();
 
-    ArrayList<Subtask> getEpicSubtasks(int epicId);
+    List<Subtask> getEpicSubtasks(int epicId);
 }

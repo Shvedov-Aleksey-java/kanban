@@ -13,27 +13,49 @@ import java.util.List;
 public class InMemoryTaskManager implements TaskManager {
     private int generatorId = 1;
 
-    private ArrayList<Task> tenLastViewedIssues = new ArrayList<>();
+    private final HashMap<Integer, Task> tasks = tasks();
+    private final HashMap<Integer, Epic> epics = epics();
+    private final HashMap<Integer, Subtask> subtasks = subtasks();
+    private final HistoryManager historyManager = historyManager();
 
-    private HashMap<Integer, Task> tasks = new HashMap<>();
-    private HashMap<Integer, Epic> epics = new HashMap<>();
-    private HashMap<Integer, Subtask> subtasks = new HashMap<>();
+    @Override
+    public HashMap<Integer, Epic> epics() {
+        return new HashMap<>();
+    }
 
+    @Override
+    public HashMap<Integer, Subtask> subtasks() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public HashMap<Integer, Task> tasks() {
+        return new HashMap<>();
+    }
+
+    @Override
     public ArrayList<Task> getTasks() {
         return new ArrayList<>(tasks.values());
     }
 
+    @Override
     public ArrayList<Epic> getEpics() {
         return new ArrayList<>(epics.values());
     }
 
+    @Override
     public ArrayList<Subtask> getSubtasks() {
         return new ArrayList<>(subtasks.values());
     }
 
     @Override
+    public InMemoryHistoryManager historyManager() {
+        return (InMemoryHistoryManager) Managers.getDefaultHistory();
+    }
+
+    @Override
     public List<Task> getHistory() {
-        return tenLastViewedIssues;
+        return historyManager.getHistory();
     }
 
     @Override
@@ -79,10 +101,9 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public Task getTasks(int id) {
+    public Task getTask(int id) {
         if (tasks.containsKey(id)) {
-            if (tenLastViewedIssues.size() == 10) tenLastViewedIssues.clear();
-            tenLastViewedIssues.add(tasks.get(id));
+            historyManager.add(tasks.get(id));
         }
         return tasks.get(id);
     }
@@ -90,8 +111,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Epic getEpic(int id) {
         if (epics.containsKey(id)) {
-            if (tenLastViewedIssues.size() == 10) tenLastViewedIssues.clear();
-            tenLastViewedIssues.add(epics.get(id));
+            historyManager.add(epics.get(id));
         }
         return epics.get(id);
     }
@@ -99,8 +119,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Subtask getSubtask(int id) {
         if (subtasks.containsKey(id)) {
-            if (tenLastViewedIssues.size() == 10) tenLastViewedIssues.clear();
-            tenLastViewedIssues.add(subtasks.get(id));
+            historyManager.add(subtasks.get(id));
         }
         return subtasks.get(id);
     }
@@ -185,7 +204,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Subtask> getEpicSubtasks(int epicId) {
+    public List<Subtask> getEpicSubtasks(int epicId) {
         ArrayList<Subtask> tasks = new ArrayList<>();
         Epic epic = epics.get(epicId);
         if (epic == null) {
