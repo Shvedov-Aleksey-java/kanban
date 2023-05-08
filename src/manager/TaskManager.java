@@ -3,28 +3,17 @@ package manager;
 import task.Epic;
 import task.Subtask;
 import task.Task;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public interface TaskManager {
 
     Task getTask(int id);
 
-    HashMap<Integer, Epic> epics();
+    List<Task> getTasks();
 
-    HashMap<Integer, Subtask> subtasks();
+    List<Epic> getEpics();
 
-    HashMap<Integer, Task> tasks();
-
-    ArrayList<Task> getTasks();
-
-    ArrayList<Epic> getEpics();
-
-    ArrayList<Subtask> getSubtasks();
-
-    InMemoryHistoryManager historyManager();
+    List<Subtask> getSubtasks();
 
     List<Task> getHistory();
 
