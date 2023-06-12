@@ -1,8 +1,5 @@
-import manager.InMemoryTaskManager;
 import manager.Managers;
 import manager.TaskManager;
-import task.Epic;
-import task.Subtask;
 import task.Task;
 
 import java.util.List;
@@ -12,45 +9,18 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
         TaskManager manager = Managers.getDefault();
-        int task = manager.addTask(new Task("задача 1", "описание 1"));
-        int task1 = manager.addTask(new Task("задача 2", "описание 2"));
 
-        int epic = manager.addEpic(new Epic("эпик1", "описание 1"));
-        int epic1 = manager.addEpic(new Epic("эпик2", "описание 1"));
+        int task = manager.addTask(new Task("1", "1"));
+        int task1 = manager.addTask(new Task("1", "2"));
 
-        int subtask = manager.addNewSubtask(new Subtask("подзадача 1", "описание 1").setEpicId(epic));
-        int subtask1 = manager.addNewSubtask(new Subtask("подзадача 2", "описание 2").setEpicId(epic));
-        int subtask2 = manager.addNewSubtask(new Subtask("подзадача 3", "описание 3").setEpicId(epic1));
+        Task get1 = manager.getTask(task);
+        Task get2 = manager.getTask(task1);
 
-        List<Task> tasks = manager.getTasks();
-        List<Epic> epics = manager.getEpics();
-        List<Subtask> subtasks = manager.getSubtasks();
-        manager.getSubtask(subtask);
-        manager.getSubtask(subtask1);
-        manager.getEpic(epic);
-        List<Task> tasks1 = manager.getHistory();
-        System.out.println(tasks1.toString());
-
-        for (Task i: tasks){
-            System.out.println(i.toString());
-        }
-        for (Epic i: epics){
-            System.out.println(i.toString());
-        }
-        for (Subtask i: subtasks){
-            System.out.println(i.toString());
-        }
-        manager.deleteEpic(epic);
-        for (Task i: tasks){
-            System.out.println(i.toString());
-        }
-        for (Epic i: epics){
-            System.out.println(i.toString());
-        }
-        for (Subtask i: subtasks){
-            System.out.println(i.toString());
-        }
-
+        List<Task> h = manager.getHistory();
+        System.out.println(h);
+        manager.deleteTask(task);
+        List<Task> h1 = manager.getHistory();
+        System.out.println(h1);
         }
     }
 
