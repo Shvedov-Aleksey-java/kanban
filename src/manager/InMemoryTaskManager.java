@@ -127,6 +127,7 @@ public class InMemoryTaskManager implements TaskManager {
         Epic epic = epics.get(subtask.getEpicId());
         epic.removeSubtask(id); // стоит сделать метод removeSubtask в Epic для простого удаления id из списка
         updateEpicStatus(epic.getId());
+        historyManager.remove(id);
     }
 
     @Override
