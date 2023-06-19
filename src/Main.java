@@ -33,6 +33,10 @@ public class Main {
         manager.deleteSubtask(subtask);
         manager.deleteEpic(epic1);
         System.out.println(manager.getHistory());
+        String str = "task.Epic";
+        Task task = new Task("l", "k");
+        String[] r = str.split("\\.");
+        System.out.println(manager.getEpic(epic).getStatus());
 
         }
     }

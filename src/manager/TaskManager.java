@@ -3,9 +3,11 @@ package manager;
 import task.Epic;
 import task.Subtask;
 import task.Task;
+
+import java.io.Serializable;
 import java.util.List;
 
-public interface TaskManager {
+public interface TaskManager extends Serializable {
 
     Task getTask(int id);
 
@@ -46,4 +48,5 @@ public interface TaskManager {
     void clearSubtasks();
 
     List<Subtask> getEpicSubtasks(int epicId);
+
 }

@@ -1,10 +1,11 @@
 package task;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Epic extends Task {
+public class Epic extends Task implements Serializable {
     private List<Integer> subtaskIds = new ArrayList<>();
 
     public Epic(String name, String description) {

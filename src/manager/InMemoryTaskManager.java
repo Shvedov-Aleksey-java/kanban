@@ -5,19 +5,20 @@ import task.Progress;
 import task.Subtask;
 import task.Task;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class InMemoryTaskManager implements TaskManager {
+public class InMemoryTaskManager implements TaskManager, Serializable {
     private int generatorId = 1;
 
-    private final Map<Integer, Task> tasks = new HashMap<>();
-    private final Map<Integer, Epic> epics = new HashMap<>();
-    private final Map<Integer, Subtask> subtasks = new HashMap<>();
-    private final HistoryManager historyManager = Managers.getDefaultHistory();
+    private Map<Integer, Task> tasks = new HashMap<>();
+    private Map<Integer, Epic> epics = new HashMap<>();
+    private Map<Integer, Subtask> subtasks = new HashMap<>();
+    private HistoryManager historyManager = Managers.getDefaultHistory();
 
 
     @Override
@@ -233,7 +234,17 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
+    public void setTasks(Map<Integer, Task> tasks) {
+        this.tasks = tasks;
+    }
 
+    public void setEpics(Map<Integer, Epic> epics) {
+        this.epics = epics;
+    }
+
+    public void setSubtasks(Map<Integer, Subtask> subtasks) {
+        this.subtasks = subtasks;
+    }
 }
 
 

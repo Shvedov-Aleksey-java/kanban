@@ -1,7 +1,9 @@
 package manager;
 
 
-public class Managers {
+import java.io.Serializable;
+
+public class Managers implements Serializable {
     public static TaskManager getDefault() {
         return new InMemoryTaskManager();
     }

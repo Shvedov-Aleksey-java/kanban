@@ -1,5 +1,7 @@
 package task;
 
-public enum Progress {
+import java.io.Serializable;
+
+public enum Progress implements Serializable {
     NEW, IN_PROGRESS, DONE
 }

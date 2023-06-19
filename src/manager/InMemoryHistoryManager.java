@@ -2,10 +2,11 @@ package manager;
 
 import task.Task;
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class InMemoryHistoryManager implements HistoryManager {
+public class InMemoryHistoryManager implements HistoryManager, Serializable {
 
     private Map<Integer, Node> history = new HashMap<>();
 
