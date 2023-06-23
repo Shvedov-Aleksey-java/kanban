@@ -3,7 +3,8 @@ package task;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Task implements Serializable {
+public class Task {
+    private TaskType taskType;
     private String name;
     private String description;
     private Progress status;
@@ -45,6 +46,14 @@ public class Task implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public TaskType getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
     }
 
     @Override

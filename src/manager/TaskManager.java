@@ -4,10 +4,12 @@ import task.Epic;
 import task.Subtask;
 import task.Task;
 
-import java.io.Serializable;
+
 import java.util.List;
 
-public interface TaskManager extends Serializable {
+public interface TaskManager {
+
+    public void loadFromFile(String filePath);
 
     Task getTask(int id);
 

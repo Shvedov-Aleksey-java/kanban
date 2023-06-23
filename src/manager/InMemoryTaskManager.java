@@ -1,24 +1,20 @@
 package manager;
 
-import task.Epic;
-import task.Progress;
-import task.Subtask;
-import task.Task;
+import task.*;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class InMemoryTaskManager implements TaskManager, Serializable {
-    private int generatorId = 1;
+public class InMemoryTaskManager implements TaskManager {
+    protected int generatorId = 1;
 
-    private Map<Integer, Task> tasks = new HashMap<>();
-    private Map<Integer, Epic> epics = new HashMap<>();
-    private Map<Integer, Subtask> subtasks = new HashMap<>();
-    private HistoryManager historyManager = Managers.getDefaultHistory();
+    protected Map<Integer, Task> tasks = new HashMap<>();
+    protected Map<Integer, Epic> epics = new HashMap<>();
+    protected Map<Integer, Subtask> subtasks = new HashMap<>();
+    protected HistoryManager historyManager = Managers.getDefaultHistory();
 
 
     @Override
@@ -46,6 +42,7 @@ public class InMemoryTaskManager implements TaskManager, Serializable {
         if (task != null) {
             int id = ++generatorId;
             task.setStatus(Progress.NEW);
+            task.setTaskType(TaskType.TASK);
             task.setId(id);
             tasks.put(id, task);
             return id;
@@ -58,6 +55,7 @@ public class InMemoryTaskManager implements TaskManager, Serializable {
         if (epic != null) {
             int id = ++generatorId;
             epic.setStatus(Progress.NEW);
+            epic.setTaskType(TaskType.EPIC);
             epic.setId(id);
             epics.put(id, epic);
             return id;
@@ -76,12 +74,16 @@ public class InMemoryTaskManager implements TaskManager, Serializable {
             final int id = ++generatorId;
             subtask.setId(id);
             subtask.setStatus(Progress.NEW);
+            subtask.setTaskType(TaskType.SUBTASK);
             subtasks.put(id, subtask);
             epic.getSubtaskIds().add(id);
             return id;
         }
         return null;
     }
+
+    @Override
+    public void loadFromFile(String filePath) {}
 
     @Override
     public Task getTask(int id) {
@@ -234,17 +236,6 @@ public class InMemoryTaskManager implements TaskManager, Serializable {
         }
     }
 
-    public void setTasks(Map<Integer, Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public void setEpics(Map<Integer, Epic> epics) {
-        this.epics = epics;
-    }
-
-    public void setSubtasks(Map<Integer, Subtask> subtasks) {
-        this.subtasks = subtasks;
-    }
 }
 
 

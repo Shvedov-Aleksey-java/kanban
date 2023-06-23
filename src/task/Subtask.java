@@ -3,7 +3,7 @@ package task;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Subtask extends Task implements Serializable {
+public class Subtask extends Task {
     private int epicId;
 
     public Subtask(String name, String description) {

@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public class InMemoryHistoryManager implements HistoryManager, Serializable {
+public class InMemoryHistoryManager implements HistoryManager {
 
     private Map<Integer, Node> history = new HashMap<>();
 
