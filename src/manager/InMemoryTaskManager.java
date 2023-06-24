@@ -82,8 +82,6 @@ public class InMemoryTaskManager implements TaskManager {
         return null;
     }
 
-    @Override
-    public void loadFromFile(String filePath) {}
 
     @Override
     public Task getTask(int id) {

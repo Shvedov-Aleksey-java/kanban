@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface TaskManager {
 
-    public void loadFromFile(String filePath);
-
     Task getTask(int id);
 
     List<Task> getTasks();
@@ -50,5 +48,7 @@ public interface TaskManager {
     void clearSubtasks();
 
     List<Subtask> getEpicSubtasks(int epicId);
+
+
 
 }
