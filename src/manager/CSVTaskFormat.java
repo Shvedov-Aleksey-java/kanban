@@ -2,17 +2,20 @@ package manager;
 
 import task.*;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.valueOf;
 
 public class CSVTaskFormat {
 
 
         public static String toString(Task task) {
             return task.getId() + "," + task.getTaskType() + "," + task.getName() + "," + task.getStatus() + ","
-                    + task.getDescription() + "," + (task.getTaskType().equals(TaskType.SUBTASK) ? ((Subtask)task).getEpicId() : "");
+                    + task.getDescription() + (task.getTaskType().equals(TaskType.SUBTASK) ? "," + ((Subtask)task).getEpicId() : "")
+                    + (task.getEndTime() != null ? ("," + task.getStartTime().toString() + "," + task.getDuration().toString()
+                    + "," + task.getEndTime().toString()) : "");
         }
         public static Task taskFromString(String value) {
             final String[] values = value.split(",");
@@ -25,11 +28,33 @@ public class CSVTaskFormat {
                 return new Task(id, name, description, status, type);
             }
             if (type == TaskType.SUBTASK) {
-                final int epicId = Integer.parseInt(values[5]);
-                return new Subtask(id, name, description, status, type, epicId);
+                if (values.length == 6) {
+                    final int epicId = Integer.parseInt(values[5]);
+                    return new Subtask(id, name, description, status, type, epicId);
+                } else if (values.length == 5) {
+                    return new Subtask(id, name, description, status, type);
+                } else if (values.length == 8) {
+                    final LocalDateTime start = LocalDateTime.parse(values[5]);
+                    final Duration duration = Duration.parse(values[6]);
+                    return new Subtask(id, name, description, status, type, start, duration);
+
+                } else if (values.length == 9) {
+                    final LocalDateTime start = LocalDateTime.parse(values[6]);
+                    final Duration duration = Duration.parse(values[7]);
+                    final int epicId = Integer.parseInt(values[5]);
+                    return new Subtask(id, name, description, status, type, epicId, start, duration);
+                }
+
             }
             if(type == TaskType.EPIC) {
-                return new Epic(id, name, description, status, type);
+                if (values.length == 8) {
+                    final LocalDateTime start = LocalDateTime.parse(values[5]);
+                    final Duration duration = Duration.parse(values[6]);
+                    final LocalDateTime end = LocalDateTime.parse(values[7]);
+                    return new Epic(id, name, description, status, type, start, duration, end);
+                } else {
+                    return new Epic(id, name, description, status, type);
+                }
             }
             return null;
         }
@@ -56,6 +81,6 @@ public class CSVTaskFormat {
             return ids;
         }
         public static String getHeader() {
-            return "id,type,name,status,description,epic";
+            return "id,type,name,status,description,epic,startTime,Duration,EndTime";
         }
 }

@@ -82,6 +82,6 @@ class HistoryManagerTest {
     @Test
     void getHistoryIsEmpty() {
         HistoryManager manager = Managers.getDefaultHistory();
-        assertTrue(manager.getHistory().isEmpty(), "список не пустой");
+        assertTrue(manager.getHistory().isEmpty(), "СЃРїРёСЃРѕРє РЅРµ РїСѓСЃС‚РѕР№");
     }
 }

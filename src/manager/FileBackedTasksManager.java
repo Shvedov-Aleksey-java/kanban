@@ -54,8 +54,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             final String csv = Files.readString(file.toPath());
             final String[] lines = csv.split(System.lineSeparator());
 
-
-
             int generatorId = 0;
             List<Integer> history = Collections.emptyList();
             for (int i = 1; i < lines.length; i++) {
@@ -227,6 +225,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     @Override
     public void updateStatusTask(int task, Progress process) {
         super.updateStatusTask(task, process);
+        save();
+    }
+
+    @Override
+    public void addEpicSubtaskIds(int epicId, int subtaskId) {
+        super.addEpicSubtaskIds(epicId, subtaskId);
         save();
     }
 

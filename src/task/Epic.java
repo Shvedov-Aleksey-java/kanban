@@ -19,6 +19,12 @@ public class Epic extends Task {
     public Epic(int id, String name, String description, Progress status, TaskType type) {
         super(id, name, description, status, type);
     }
+    public Epic(int id, String name, String description, Progress status, TaskType type, LocalDateTime startTime, Duration duration, LocalDateTime endTime) {
+        super(id, name, description, status, type);
+        setStartTime(startTime);
+        setDuration(duration);
+        this.endTime = endTime;
+    }
     public Epic(int id, String name, String description) {
         super(id, name, description);
     }
