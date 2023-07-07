@@ -1,6 +1,7 @@
 package manager;
 
 import task.Epic;
+import task.Progress;
 import task.Subtask;
 import task.Task;
 
@@ -46,6 +47,16 @@ public interface TaskManager {
     void clearEpics();
 
     void clearSubtasks();
+
+    void updateStatusEpic(int epic, Progress process);
+
+    void updateStatusTask(int task, Progress process);
+
+    void updateStatusSubtask(int subtask, Progress process);
+
+    void addEpicSubtaskIds(int epicId, int subtaskId);
+
+
 
     List<Subtask> getEpicSubtasks(int epicId);
 

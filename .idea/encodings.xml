@@ -2,12 +2,15 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/FileBackedTasksManagerTestLaod.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/HistoryManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/ManagerSaveException.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/Managers.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/TaskManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/TaskManagerTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/TimeOutTaskManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Epic.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Progress.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Subtask.java" charset="UTF-8" />

@@ -1,6 +1,8 @@
 package manager;
 
+import task.Progress;
 import task.Task;
+import task.TaskType;
 
 import java.io.Serializable;
 import java.util.*;
@@ -87,6 +89,18 @@ public class InMemoryHistoryManager implements HistoryManager {
             this.next = next;
             this.prev = prev;
         }
+    }
+
+    public static void main(String[] args) {
+        HistoryManager manager = Managers.getDefaultHistory();
+        Task task = new Task(0, "a", "s", Progress.NEW, TaskType.TASK);
+        Task task2 = new Task(1, "b", "c", Progress.NEW, TaskType.TASK);
+        Task task3 = new Task(2, "b", "c", Progress.NEW, TaskType.TASK);
+        manager.add(task);
+        manager.add(task2);
+        manager.add(task3);
+        manager.remove(0);
+        System.out.println(manager.getHistory().toString());
     }
 }
 

@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
     private final File file;
@@ -210,6 +212,24 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         save();
     }
 
+    @Override
+    public void updateStatusEpic(int epic, Progress process) {
+        super.updateStatusEpic(epic, process);
+        save();
+    }
+
+    @Override
+    public void updateStatusSubtask(int subtask, Progress process) {
+        super.updateStatusSubtask(subtask, process);
+        save();
+    }
+
+    @Override
+    public void updateStatusTask(int task, Progress process) {
+        super.updateStatusTask(task, process);
+        save();
+    }
+
     public static void main(String[] args) {
         TaskManager manager = Managers.getDefault();
         int task1 = manager.addTask(new Task("a", "a"));
@@ -226,7 +246,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         System.out.println(manager.getSubtasks().toString());
         System.out.println(manager.getHistory().toString());
 
-        File file1 = new File("./resources/task.csv");
+        File file1 = new File("C:\\Новая папка\\qwe.csv");
         TaskManager manager1 = FileBackedTasksManager.loadFromFile(file1);
         System.out.println(manager1.getTasks().toString());
         System.out.println(manager1.getEpics().toString());
