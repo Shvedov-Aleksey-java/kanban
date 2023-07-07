@@ -393,10 +393,5 @@ class TaskManagerTest {
                 }
         );
         assertEquals(exception.getMessage(), "время уже занято");
-        //mm
-
-
-
-
     }
 }
