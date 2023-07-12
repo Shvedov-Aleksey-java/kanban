@@ -3,20 +3,22 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/manager/CSVTaskFormat.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/manager/FileBackedTasksManagerTestLaod.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/HistoryManager.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/manager/HistoryManagerTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/ManagerSaveException.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/Managers.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/TaskManager.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/manager/TaskManagerTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/manager/TimeOutTaskManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Epic.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Progress.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Subtask.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/Task.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/task/TaskType.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/EpicTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/InMemoryTaskManagerTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/FileBackedTasksManagerTestLaod.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/HistoryManagerTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/TaskManagerTest.java" charset="UTF-8" />
   </component>
 </project>

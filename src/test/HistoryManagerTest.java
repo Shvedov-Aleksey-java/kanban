@@ -1,14 +1,17 @@
-package manager;
+package test;
 
-import com.sun.source.tree.AssertTree;
+import manager.HistoryManager;
+import manager.Managers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import task.Progress;
-import task.Task;
-import task.TaskType;
+import task.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+class HistoryManagerTest<T extends HistoryManager> {
 
-class HistoryManagerTest {
+    protected T historyManager;
+    protected Task task;
+    protected Epic epic;
+    protected Subtask subtask;
 
     @Test
     void addDuplicate() {
@@ -19,8 +22,8 @@ class HistoryManagerTest {
         manager.add(task2);
         Task i = manager.getHistory().get(0);
         int size = manager.getHistory().size();
-        assertEquals(i, task2);
-        assertEquals(size, 1);
+        Assertions.assertEquals(i, task2);
+        Assertions.assertEquals(size, 1);
 
 
     }
@@ -37,9 +40,9 @@ class HistoryManagerTest {
         int size = manager.getHistory().size();
         Task gTask1 = manager.getHistory().get(0);
         Task gTask2 = manager.getHistory().get(1);
-        assertEquals(gTask1, task2);
-        assertEquals(gTask2, task3);
-        assertEquals(size, 2);
+        Assertions.assertEquals(gTask1, task2);
+        Assertions.assertEquals(gTask2, task3);
+        Assertions.assertEquals(size, 2);
 
 
     }
@@ -56,9 +59,9 @@ class HistoryManagerTest {
         int size = manager.getHistory().size();
         Task gTask1 = manager.getHistory().get(0);
         Task gTask2 = manager.getHistory().get(1);
-        assertEquals(gTask1, task);
-        assertEquals(gTask2, task3);
-        assertEquals(size, 2);
+        Assertions.assertEquals(gTask1, task);
+        Assertions.assertEquals(gTask2, task3);
+        Assertions.assertEquals(size, 2);
 
     }
     @Test
@@ -74,14 +77,14 @@ class HistoryManagerTest {
         int size = manager.getHistory().size();
         Task gTask1 = manager.getHistory().get(0);
         Task gTask2 = manager.getHistory().get(1);
-        assertEquals(gTask1, task);
-        assertEquals(gTask2, task2);
-        assertEquals(size, 2);
+        Assertions.assertEquals(gTask1, task);
+        Assertions.assertEquals(gTask2, task2);
+        Assertions.assertEquals(size, 2);
 
     }
     @Test
     void getHistoryIsEmpty() {
         HistoryManager manager = Managers.getDefaultHistory();
-        assertTrue(manager.getHistory().isEmpty(), "список не пустой");
+        Assertions.assertTrue(manager.getHistory().isEmpty(), "список не пустой");
     }
 }
