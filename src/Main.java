@@ -17,8 +17,6 @@ public class Main {
         int epic = managers.addEpic(new Epic("a", "b"));
         int sub = managers.addNewSubtask(new Subtask("a", "s", epic));
         int sub1 = managers.addNewSubtask(new Subtask("a", "s", epic));
-        managers.updateStatusSubtask(sub, Progress.DONE);
-        managers.updateStatusSubtask(sub1, Progress.DONE);
         System.out.println(managers.getEpic(epic).getStatus());
 
 
