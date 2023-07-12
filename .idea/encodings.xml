@@ -17,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/src/task/TaskType.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/EpicTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/InMemoryTaskManagerTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/manager/FileBackedTasksManagerTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/test/src/FileBackedTasksManagerTestLaod.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/test/src/HistoryManagerTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/test/src/TaskManagerTest.java" charset="UTF-8" />

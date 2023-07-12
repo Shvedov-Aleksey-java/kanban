@@ -1,4 +1,5 @@
-package test;
+package manager;
+
 import manager.FileBackedTasksManager;
 import manager.ManagerSaveException;
 import manager.Managers;
@@ -305,7 +306,6 @@ class TaskManagerTest<T extends TaskManager> {
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
         Assertions.assertTrue(manager.getEpic(epic1).getSubtaskIds().isEmpty());
-        manager.addEpicSubtaskIds(epic1, subtask);
         Assertions.assertFalse(manager.getEpic(epic1).getSubtaskIds().isEmpty());
     }
 
@@ -332,9 +332,6 @@ class TaskManagerTest<T extends TaskManager> {
                 LocalDateTime.of(2023,6, 1, 13, 0)));
         int subtask2 = manager.addNewSubtask(new Subtask("a", "s", Duration.ofMinutes(30),
                 LocalDateTime.of(2023,8, 1, 13, 0)));
-        manager.addEpicSubtaskIds(epic, subtask);
-        manager.addEpicSubtaskIds(epic, subtask1);
-        manager.addEpicSubtaskIds(epic, subtask2);
         Duration subtaskTime = manager.getSubtask(subtask).getDuration();
         Duration subtaskTime1 = subtaskTime.plus(manager.getSubtask(subtask1).getDuration());
         Duration sumTime = subtaskTime1.plus(manager.getSubtask(subtask2).getDuration());
