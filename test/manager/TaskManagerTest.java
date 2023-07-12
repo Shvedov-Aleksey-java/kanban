@@ -1,6 +1,6 @@
 package test;
-
-import manager.InMemoryTaskManager;
+import manager.FileBackedTasksManager;
+import manager.ManagerSaveException;
 import manager.Managers;
 import manager.TaskManager;
 import org.junit.jupiter.api.Assertions;
@@ -11,10 +11,13 @@ import task.Progress;
 import task.Subtask;
 import task.Task;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.File;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
-class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
-    protected T inMemoryTaskManager;
+class TaskManagerTest<T extends TaskManager> {
+
+    protected T taskManager;
     protected Task task;
     protected Epic epic;
     protected Subtask subtask;
@@ -24,6 +27,14 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
     @BeforeEach
     void getDefault(){
         manager = Managers.getDefault();
+    }
+
+    @Test
+    void getTask() {
+        Assertions.assertTrue(manager.getTasks().isEmpty());
+        Assertions.assertNull(manager.getTask(0));
+        int task = manager.addTask(new Task("a", "d"));
+        Assertions.assertEquals(task, manager.getTask(task).getId());
     }
 
     @Test
@@ -44,8 +55,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
     }
 
@@ -92,8 +101,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
     }
 
@@ -111,15 +118,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
     }
 
     @Test
-    void getTask() {
-        Assertions.assertTrue(manager.getTasks().isEmpty());
-        Assertions.assertNull(manager.getTask(0));
-        int task = manager.addTask(new Task("d", "f"));
-        assertNotNull(manager.getTask(task));
-        assertFalse(manager.getTasks().isEmpty());
-    }
-
-    @Test
     void getEpic() {
 
         Assertions.assertTrue(manager.getEpics().isEmpty());
@@ -128,8 +126,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
     }
 
@@ -163,8 +159,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
         Assertions.assertFalse(manager.getEpics().isEmpty());
         manager.deleteEpic(epic);
@@ -216,8 +210,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
         Epic t = manager.getEpic(epic);
         String name = t.getName();
@@ -279,8 +271,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
         Assertions.assertFalse(manager.getEpics().isEmpty());
         manager.clearEpics();
@@ -304,49 +294,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
     }
 
     @Test
-    void updateStatusEpic() {
-
-        Assertions.assertTrue(manager.getEpics().isEmpty());
-        Assertions.assertNull(manager.getEpic(0));
-        int epic = manager.addEpic(new Epic("a", "d"));
-        Assertions.assertEquals(epic, manager.getEpic(epic).getId());
-        int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
-        int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
-        Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
-        manager.updateStatusEpic(epic, Progress.NEW);
-        Assertions.assertEquals(Progress.NEW, manager.getEpic(epic).getStatus());
-    }
-
-    @Test
-    void updateStatusTask() {
-
-        Assertions.assertTrue(manager.getTasks().isEmpty());
-        Assertions.assertNull(manager.getTask(0));
-        int task = manager.addTask(new Task("a", "d"));
-        Assertions.assertEquals(task, manager.getTask(task).getId());
-        Assertions.assertEquals(Progress.NEW, manager.getTask(task).getStatus());
-        manager.updateStatusTask(task, Progress.DONE);
-        Assertions.assertEquals(Progress.DONE, manager.getTask(task).getStatus());
-    }
-
-    @Test
-    void updateStatusSubtask() {
-
-        Assertions.assertTrue(manager.getSubtasks().isEmpty());
-        Assertions.assertNull(manager.getSubtask(0));
-        int sub = manager.addNewSubtask(new Subtask("l", "k"));
-        Assertions.assertNull(manager.getSubtask(sub).getEpicId());
-        int epic = manager.addEpic(new Epic("a", "d"));
-        int sub1 = manager.addNewSubtask(new Subtask("l", "k", epic));
-        Subtask subtask = manager.getSubtask(sub1);
-        Assertions.assertEquals(epic, subtask.getEpicId());
-        manager.updateStatusSubtask(sub1, Progress.DONE);
-        Assertions.assertEquals(manager.getSubtask(sub1).getStatus(), Progress.DONE);
-    }
-
-    @Test
     void addEpicSubtaskIds() {
 
         Assertions.assertTrue(manager.getEpics().isEmpty());
@@ -356,8 +303,6 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertEquals(epic, manager.getEpic(epic).getId());
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
         int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
         Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
         Assertions.assertTrue(manager.getEpic(epic1).getSubtaskIds().isEmpty());
         manager.addEpicSubtaskIds(epic1, subtask);
@@ -366,6 +311,7 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
 
     @Test
     void getEpicSubtasks() {
+
         int epic = manager.addEpic(new Epic("a", "d"));
         int epic1 = manager.addEpic(new Epic("k", "l"));
         int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
@@ -373,31 +319,36 @@ class InMemoryTaskManagerTest<T extends InMemoryTaskManager> {
         Assertions.assertNull(manager.getEpicSubtasks(epic1));
         Assertions.assertNull(manager.getEpicSubtasks(10));
         Assertions.assertFalse(manager.getEpicSubtasks(epic).isEmpty());
+
     }
 
     @Test
-    void testUpdateEpic() {
-        Assertions.assertTrue(manager.getEpics().isEmpty());
-        Assertions.assertNull(manager.getEpic(0));
+    void updateEpicTime() {
+
         int epic = manager.addEpic(new Epic("a", "d"));
-        Assertions.assertEquals(epic, manager.getEpic(epic).getId());
-        int subtask = manager.addNewSubtask(new Subtask("a", "b", epic));
-        int subtask1 = manager.addNewSubtask(new Subtask("2", "2", epic));
-        manager.updateStatusSubtask(subtask, Progress.DONE);
-        manager.updateStatusSubtask(subtask1, Progress.DONE);
-        Assertions.assertEquals(Progress.DONE, manager.getEpic(epic).getStatus());
-        Epic t = manager.getEpic(epic);
-        String name = t.getName();
-        String description = t.getDescription();
-        Assertions.assertEquals(name, "a");
-        Assertions.assertEquals(description, "d");
-        manager.updateEpic(new Epic(10, "k", "l"));
-        Assertions.assertEquals(t, manager.getEpic(epic));
-        manager.updateEpic(new Epic(epic, "c", "v"));
-        Epic t1 = manager.getEpic(epic);
-        String name1 = t1.getName();
-        String description1 = t1.getDescription();
-        Assertions.assertEquals(name1, "c");
-        Assertions.assertEquals(description1, "v");
+        int subtask = manager.addNewSubtask(new Subtask("a", "s", Duration.ofMinutes(30),
+                LocalDateTime.of(2023,7, 1, 13, 0)));
+        int subtask1 = manager.addNewSubtask(new Subtask("a", "s", Duration.ofMinutes(30),
+                LocalDateTime.of(2023,6, 1, 13, 0)));
+        int subtask2 = manager.addNewSubtask(new Subtask("a", "s", Duration.ofMinutes(30),
+                LocalDateTime.of(2023,8, 1, 13, 0)));
+        manager.addEpicSubtaskIds(epic, subtask);
+        manager.addEpicSubtaskIds(epic, subtask1);
+        manager.addEpicSubtaskIds(epic, subtask2);
+        Duration subtaskTime = manager.getSubtask(subtask).getDuration();
+        Duration subtaskTime1 = subtaskTime.plus(manager.getSubtask(subtask1).getDuration());
+        Duration sumTime = subtaskTime1.plus(manager.getSubtask(subtask2).getDuration());
+        Assertions.assertEquals(sumTime, manager.getEpic(epic).getDuration());
+        Assertions.assertEquals(manager.getEpic(epic).getStartTime(), LocalDateTime.of(2023,6, 1, 13, 0));
+        Assertions.assertEquals(manager.getEpic(epic).getEndTime(), LocalDateTime.of(2023,8, 1, 13, 0)
+                .plus(manager.getSubtask(subtask2).getDuration()));
+        final ManagerSaveException exception = Assertions.assertThrows(
+                ManagerSaveException.class,
+                () -> {
+                    int subtask3 = manager.addNewSubtask(new Subtask("a", "s", Duration.ofMinutes(30),
+                            LocalDateTime.of(2023,8, 1, 13, 0)));
+                }
+        );
+        Assertions.assertEquals(exception.getMessage(), "время уже занято");
     }
 }

@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="978955d7-5b40-46ec-8499-d8caa3be5265" name="Changes" comment="mission final 7, trial 1.">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/apiguardian-api-1.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/junit-jupiter-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/junit-jupiter-api-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/junit-jupiter-engine-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/junit-jupiter-params-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/junit-platform-commons-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/junit-platform-engine-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/lib/opentest4j-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/CSVTaskFormat.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/HistoryManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager$Node.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryTaskManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/ManagerSaveException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/Managers.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/TaskManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/task/Epic.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/task/Progress.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/task/Subtask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/task/Task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/task/TaskType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/test/EpicTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/test/FileBackedTasksManagerTestLaod.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/test/FileBackedTasksManagerTestSave.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/test/HistoryManagerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java-kanban/test/TaskManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/Managers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/TaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/task.csv" beforeDir="false" afterPath="$PROJECT_DIR$/resources/task.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/FileBackedTasksManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/HistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/HistoryManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/InMemoryTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/TaskManagerTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="baae6801-b6b7-4470-a262-14746e6b29fc" />
+        <option name="url" value="https://github.com/Aleksey01091993/java-kanban.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2OhfksBRCTPzJCM4Y5UV0CTl6TO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/79686/Ypraktika/java-kanban/src/lib&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;two.files.diff.last.used.folder&quot;: &quot;C:/Users/79686/Ypraktika/java-kanban/test&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="manager" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\src\lib" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\src\test" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\test\src\lib" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\test\src" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\test" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\test\manager" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\resources" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\test\src" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\tests" />
+      <recent name="C:\Users\79686\Ypraktika\java-kanban\out" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="manager" />
+      <recent name="task" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="java-kanban" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Epic.gh" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="task.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="task" />
+      <option name="MAIN_CLASS_NAME" value="task.Epic" />
+      <option name="METHOD_NAME" value="gh" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.manager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="manager" />
+      <option name="MAIN_CLASS_NAME" value="manager.HistoryManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HistoryManagerTest.removeEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.manager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="manager" />
+      <option name="MAIN_CLASS_NAME" value="manager.HistoryManagerTest" />
+      <option name="METHOD_NAME" value="removeEnd" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.manager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="manager" />
+      <option name="MAIN_CLASS_NAME" value="manager.TaskManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.TaskManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskManagerTest.updateEpicTime" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.manager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="manager" />
+      <option name="MAIN_CLASS_NAME" value="manager.TaskManagerTest" />
+      <option name="METHOD_NAME" value="updateEpicTime" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Epic.gh" />
+        <item itemvalue="JUnit.HistoryManagerTest.removeEnd" />
+        <item itemvalue="JUnit.HistoryManagerTest" />
+        <item itemvalue="JUnit.TaskManagerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="978955d7-5b40-46ec-8499-d8caa3be5265" name="Changes" comment="" />
+      <created>1682017880838</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682017880838</updated>
+    </task>
+    <task id="LOCAL-00001" summary="mission complete">
+      <created>1682360496441</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682360496441</updated>
+    </task>
+    <task id="LOCAL-00002" summary="mission complete">
+      <created>1682707276140</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682707276140</updated>
+    </task>
+    <task id="LOCAL-00003" summary="mission complete">
+      <created>1682794984449</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682794984449</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mission complete3">
+      <created>1682875976853</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682875976853</updated>
+    </task>
+    <task id="LOCAL-00005" summary="mission complete4">
+      <created>1683017532148</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683017532148</updated>
+    </task>
+    <task id="LOCAL-00006" summary="mission final 4, attempt 1.">
+      <created>1683395618160</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683395618160</updated>
+    </task>
+    <task id="LOCAL-00007" summary="mission final 4, attempt 1.">
+      <created>1683396586086</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1683396586086</updated>
+    </task>
+    <task id="LOCAL-00008" summary="mission final 4, trial 2.">
+      <created>1683449757163</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1683449757163</updated>
+    </task>
+    <task id="LOCAL-00009" summary="mission final 4, trial 3.">
+      <created>1683576378589</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1683576378589</updated>
+    </task>
+    <task id="LOCAL-00010" summary="mission final 5, trial 1.">
+      <created>1686568490193</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686568490193</updated>
+    </task>
+    <task id="LOCAL-00011" summary="mission final 5, trial 1.">
+      <created>1686571735619</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686571735619</updated>
+    </task>
+    <task id="LOCAL-00012" summary="mission final 5, trial 2.">
+      <created>1686670980631</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686670980631</updated>
+    </task>
+    <task id="LOCAL-00013" summary="mission final 6, trial 1.">
+      <created>1687174897399</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1687174897399</updated>
+    </task>
+    <task id="LOCAL-00014" summary="mission final 6, trial 2.">
+      <created>1687530636966</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1687530636966</updated>
+    </task>
+    <task id="LOCAL-00015" summary="mission final 6, trial 3.">
+      <option name="closed" value="true" />
+      <created>1687635694632</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1687635694632</updated>
+    </task>
+    <task id="LOCAL-00016" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688741720308</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1688741720308</updated>
+    </task>
+    <task id="LOCAL-00017" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688741760492</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1688741760492</updated>
+    </task>
+    <task id="LOCAL-00018" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688741841521</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1688741841521</updated>
+    </task>
+    <task id="LOCAL-00019" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688741933108</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1688741933108</updated>
+    </task>
+    <task id="LOCAL-00020" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688742017648</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1688742017648</updated>
+    </task>
+    <task id="LOCAL-00021" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688742077151</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1688742077151</updated>
+    </task>
+    <task id="LOCAL-00022" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1688759624583</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1688759624583</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="742925ac-5de9-473a-af62-3be95d113217" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="742925ac-5de9-473a-af62-3be95d113217">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/79686/Ypraktika/java-kanban/out" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mission complete" />
+    <MESSAGE value="mission complete3" />
+    <MESSAGE value="mission complete4" />
+    <MESSAGE value="mission final 4, attempt 1." />
+    <MESSAGE value="mission final 4, trial 2." />
+    <MESSAGE value="mission final 4, trial 3." />
+    <MESSAGE value="mission final 5, trial 1." />
+    <MESSAGE value="mission final 5, trial 2." />
+    <MESSAGE value="mission final 6, trial 1." />
+    <MESSAGE value="mission final 6, trial 2." />
+    <MESSAGE value="mission final 6, trial 3." />
+    <MESSAGE value="mission final 7, trial 1." />
+    <option name="LAST_COMMIT_MESSAGE" value="mission final 7, trial 1." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/java_kanban$TaskManagerTest_updateEpicTime.ic" NAME="TaskManagerTest.updateEpicTime Coverage Results" MODIFIED="1688728145624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>manager.*</FILTER>
+    </SUITE>
+  </component>
+</project>
