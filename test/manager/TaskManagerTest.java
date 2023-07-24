@@ -1,9 +1,6 @@
 package manager;
 
-import manager.FileBackedTasksManager;
-import manager.ManagerSaveException;
-import manager.Managers;
-import manager.TaskManager;
+import manager.exeption.ManagerSaveException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +9,6 @@ import task.Progress;
 import task.Subtask;
 import task.Task;
 
-import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
 

@@ -1,6 +1,10 @@
-package manager;
+package manager.saveLaodFileManager;
 
 
+import manager.InMemoryTaskManager;
+import manager.exeption.ManagerSaveException;
+import manager.Managers;
+import manager.TaskManager;
 import task.*;
 
 import java.io.BufferedWriter;
@@ -11,12 +15,15 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
-    private final File file;
+    private File file;
 
     public FileBackedTasksManager(File file) {
         this.file = file;
     }
 
+    public FileBackedTasksManager() {
+
+    }
 
     protected void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
