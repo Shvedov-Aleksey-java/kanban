@@ -28,36 +28,37 @@ public class KVServer {
     private void load(HttpExchange h) throws IOException {
         try {
             System.out.println("\n/load");
+
             if (!hasAuth(h)) {
                 System.out.println("Запрос неавторизован, нужен параметр в query API_TOKEN со значением апи-ключа");
                 h.sendResponseHeaders(403, 0);
                 return;
             }
-            if ("GET".equals(h.getRequestMethod())) {
-                String key = h.getRequestURI().getPath().substring("/load/".length());
-                if (key.isEmpty()) {
-                    System.out.println("/load ждёт GET-запрос, а получил " + h.getRequestMethod());
-                    h.sendResponseHeaders(405, 0);
-                    return;
-                }
-                String value = data.get(key);
-                if (!value.isEmpty()) {
-                    sendText(h, value);
-                    System.out.println("Значение для ключа " + key + " успешно обновлено!");
-                    h.sendResponseHeaders(200, 0);
-                } else {
-                    System.out.println("Key для получения пустой. key указывается в пути: /save/{key}");
-                    h.sendResponseHeaders(400, 0);
-                    return;
-                }
-            } else {
-                System.out.println("/save ждёт POST-запрос, а получил: " + h.getRequestMethod());
+            if (!"GET".equals(h.getRequestMethod())) {
+                System.out.println("/load ждёт GET-запрос, а получил " + h.getRequestMethod());
                 h.sendResponseHeaders(405, 0);
+                return;
+            } else {
+                    String key = h.getRequestURI().getPath().substring("/load".length());
+                    if (key.isEmpty()) {
+                        System.out.println("Key для получения пустой. key указывается в пути: /save/{key}");
+                        h.sendResponseHeaders(400, 0);
+                        return;
+                }
+                    String responseStr = "[]";
+                    if (data.containsKey(key)) {
+                        responseStr = data.get(key);
+                    }
+
+                System.out.println(String.format("Отпровляем ответ: %s", responseStr));
+                    sendText(h, responseStr);
+
             }
         } finally {
             h.close();
         }
-    }
+        }
+
 
     private void save(HttpExchange h) throws IOException {
         try {
@@ -68,7 +69,7 @@ public class KVServer {
                 return;
             }
             if ("POST".equals(h.getRequestMethod())) {
-                String key = h.getRequestURI().getPath().substring("/save/".length());
+                String key = h.getRequestURI().getPath().substring("/save".length());
                 if (key.isEmpty()) {
                     System.out.println("Key для сохранения пустой. key указывается в пути: /save/{key}");
                     h.sendResponseHeaders(400, 0);

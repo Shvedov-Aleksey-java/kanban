@@ -17,6 +17,7 @@ public class Task {
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
+        startTime = LocalDateTime.MIN;
     }
     public Task(String name, String description, Duration duration, LocalDateTime startTime) {
         this.name = name;

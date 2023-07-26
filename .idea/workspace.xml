@@ -5,33 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="978955d7-5b40-46ec-8499-d8caa3be5265" name="Changes" comment="mission final 7, trial 1.">
-      <change afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/manager/saveLoadFileServerManager/HttpTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/CSVTaskFormat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryTaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/ManagerSaveException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/Managers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/Managers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/TaskValidationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager$MapEpic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager$MapEpic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager$MapSubtask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager$MapSubtask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager$MapTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager$MapTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$Endpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$Endpoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/KVServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/KVServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/KVTaskClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/KVTaskClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/task.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/task.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/task/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/task/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/manager/saveLoadFileServerManager/HttpTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/manager/saveLoadFileServerManager/HttpTaskManagerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/CSVTaskFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLaodFileManager/CSVTaskFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLaodFileManager/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/exeption/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/Managers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/TaskValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/exeption/TaskValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/manager/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/FileBackedTasksManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/manager/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/TaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/task/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/manager/saveLoadFileServerManager/HttpTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/saveLoadFileServerManager/HttpTaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,21 +186,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.manager.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="manager" />
-      <option name="MAIN_CLASS_NAME" value="manager.HistoryManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="HistoryManagerTest.removeEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
@@ -238,17 +218,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HttpTaskManagerTest.testGetSubtask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="manager.saveLoadFileServerManager.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.TaskManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="manager.saveLoadFileServerManager" />
+      <option name="MAIN_CLASS_NAME" value="manager.saveLoadFileServerManager.HttpTaskManagerTest" />
+      <option name="METHOD_NAME" value="testGetSubtask" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -272,10 +253,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.HttpTaskManagerTest.testAddTask" />
+        <item itemvalue="JUnit.HttpTaskManagerTest.testGetSubtask" />
         <item itemvalue="Application.HttpTaskManager" />
         <item itemvalue="JUnit.Epic.gh" />
         <item itemvalue="JUnit.HistoryManagerTest.removeEnd" />
-        <item itemvalue="JUnit.HistoryManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -474,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689194992079</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1690226878866</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1690226878866</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -560,173 +549,69 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>94</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>93</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
           <line>30</line>
           <option name="timeStamp" value="208" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="209" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="210" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="211" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="212" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="213" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="214" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="215" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="216" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="217" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="218" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVTaskClient.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="219" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="426" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="429" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="430" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVServer.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="436" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVServer.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="437" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/KVServer.java</url>
           <line>43</line>
-          <properties class="manager.InMemoryTaskManager" method="addTask">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="54" />
+          <option name="timeStamp" value="438" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="440" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="441" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="442" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="443" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="444" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="445" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

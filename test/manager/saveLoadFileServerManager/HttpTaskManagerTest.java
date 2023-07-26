@@ -2,7 +2,6 @@ package manager.saveLoadFileServerManager;
 
 import com.google.gson.Gson;
 import manager.saveLaodFileManager.FileBackedTasksManager;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import task.Task;
 
@@ -11,8 +10,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class HttpTaskManagerTest extends FileBackedTasksManager {
     @Test
@@ -29,6 +26,7 @@ class HttpTaskManagerTest extends FileBackedTasksManager {
 
     @Test
     void testGetSubtask() {
+
     }
 
     @Test
@@ -42,9 +40,20 @@ class HttpTaskManagerTest extends FileBackedTasksManager {
             String json = gson.toJson(newTask);
             HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
             HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder().uri(url).POST(body).build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(url)
+                    .POST(body)
+                    .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
+            System.out.println(response.body());
+            HttpClient client1 = HttpClient.newHttpClient();
+            URI url1 = URI.create("http://localhost:8080/tasks/task/?id=2");
+            HttpRequest request1 = HttpRequest.newBuilder().uri(url1).GET().build();
+            HttpResponse<String> response1 = client1.send(request1, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response1.body());
+            //String str = response1.body();
+            //Task task1 = gson.fromJson(str, Task.class);
+            //System.out.println(task1.getStartTime());
 
         } catch (IOException e) {
             throw new RuntimeException(e);

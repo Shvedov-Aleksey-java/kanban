@@ -33,6 +33,13 @@ public class HttpTaskManager extends FileBackedTasksManager {
         taskClient.saveState("subtask", gson.toJson(mapSubtask));
     }
 
+    @Override
+    public Integer addTask(Task task) {
+        int id = super.addTask(task);
+        save();
+        return id;
+    }
+
     protected void load() {
         tasks = gson.fromJson(taskClient.loadState("task"), MapTask.class).getTask();
         epics = gson.fromJson(taskClient.loadState("epic"), MapEpic.class).getEpic();
@@ -133,15 +140,6 @@ public class HttpTaskManager extends FileBackedTasksManager {
 
         public void setSubtask(Map<Integer, Subtask> subtask) {
             this.subtask = subtask;
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            new KVServer().start();
-            new HttpTaskServer().start();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }
