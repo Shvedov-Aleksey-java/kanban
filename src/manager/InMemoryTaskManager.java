@@ -92,6 +92,7 @@ public class InMemoryTaskManager implements TaskManager {
     public Task getTask(int id) {
         Task task = tasks.get(id);
         if (task != null) {
+            System.out.println(tasks.values());
             historyManager.add(task);
         }
         return task;

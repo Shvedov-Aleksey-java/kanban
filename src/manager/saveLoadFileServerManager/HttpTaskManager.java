@@ -6,7 +6,7 @@ import task.Epic;
 import task.Subtask;
 import task.Task;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -15,7 +15,8 @@ public class HttpTaskManager extends FileBackedTasksManager {
     Gson gson;
     KVTaskClient taskClient;
 
-    public HttpTaskManager() {
+    public HttpTaskManager(File file) {
+        super(file);
         gson = new Gson();
         taskClient = new KVTaskClient();
     }
@@ -33,18 +34,26 @@ public class HttpTaskManager extends FileBackedTasksManager {
         taskClient.saveState("subtask", gson.toJson(mapSubtask));
     }
 
+    protected void load() {
+
+        super.tasks = gson.fromJson(taskClient.loadState("task"), MapTask.class).getTask();
+        super.epics = gson.fromJson(taskClient.loadState("epic"), MapEpic.class).getEpic();
+        super.subtasks = gson.fromJson(taskClient.loadState("subtask"), MapSubtask.class).getSubtask();
+
+    }
+
+    @Override
+    public Task getTask(int id) {
+        load();
+        Task task = super.getTask(id);
+        return task;
+    }
+
     @Override
     public Integer addTask(Task task) {
         int id = super.addTask(task);
         save();
         return id;
-    }
-
-    protected void load() {
-        tasks = gson.fromJson(taskClient.loadState("task"), MapTask.class).getTask();
-        epics = gson.fromJson(taskClient.loadState("epic"), MapEpic.class).getEpic();
-        subtasks = gson.fromJson(taskClient.loadState("subtask"), MapSubtask.class).getSubtask();
-
     }
 
     private class MapTask {

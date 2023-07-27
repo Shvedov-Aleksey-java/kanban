@@ -21,10 +21,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-    public FileBackedTasksManager() {
-
-    }
-
     protected void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(CSVTaskFormat.getHeader());
@@ -214,28 +210,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         save();
     }
 
-    public static void main(String[] args) {
-        TaskManager manager = Managers.getDefault();
-        int task1 = manager.addTask(new Task("a", "a"));
-        int epic1 = manager.addEpic(new Epic("sa", "sa"));
-        int epic2 = manager.addEpic(new Epic("as", "as"));
-        int subtask = manager.addNewSubtask(new Subtask("s", "s").setEpicId(epic1));
-        int subtask1 = manager.addNewSubtask(new Subtask("s1", "s1").setEpicId(epic2));
-        manager.getEpic(epic1);
-        manager.getEpic(epic2);
-        manager.getSubtask(subtask1);
-        manager.getSubtask(subtask);
-        System.out.println(manager.getTasks().toString());
-        System.out.println(manager.getEpics().toString());
-        System.out.println(manager.getSubtasks().toString());
-        System.out.println(manager.getHistory().toString());
 
-        File file1 = new File("resources/task.csv");
-        TaskManager manager1 = FileBackedTasksManager.loadFromFile(file1);
-        System.out.println(manager1.getTasks().toString());
-        System.out.println(manager1.getEpics().toString());
-        System.out.println(manager1.getSubtasks().toString());
-        System.out.println(manager1.getHistory().toString());
-    }
 
     }

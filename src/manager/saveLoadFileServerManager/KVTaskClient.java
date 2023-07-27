@@ -46,7 +46,7 @@ public class KVTaskClient {
 
     public String loadState(String key) {
         try {
-            String uriStr = String.format("http://%s:%d/save%s?API_TOKEN=%s", host, port, key, token);
+            String uriStr = String.format("http://%s:%d/load%s?API_TOKEN=%s", host, port, key, token);
             HttpClient client = HttpClient.newHttpClient();
             URI uri = new URI(uriStr);
             HttpRequest request = HttpRequest.newBuilder()

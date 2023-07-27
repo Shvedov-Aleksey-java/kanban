@@ -28,7 +28,6 @@ public class KVServer {
     private void load(HttpExchange h) throws IOException {
         try {
             System.out.println("\n/load");
-
             if (!hasAuth(h)) {
                 System.out.println("Запрос неавторизован, нужен параметр в query API_TOKEN со значением апи-ключа");
                 h.sendResponseHeaders(403, 0);
@@ -46,8 +45,10 @@ public class KVServer {
                         return;
                 }
                     String responseStr = "[]";
-                    if (data.containsKey(key)) {
+                    if (data.get(key) != null) {
                         responseStr = data.get(key);
+                    } else {
+                        responseStr = "not";
                     }
 
                 System.out.println(String.format("Отпровляем ответ: %s", responseStr));

@@ -57,7 +57,6 @@ public class HttpTaskServer {
                 if (url.length == 3 && url[2].equals("task") && idString != null) {
                     try {
                         String json = gson.toJson(manager.getTask(id));
-                        System.out.println(json.toString());
                         writeResponse(exchange, json, 200);
                     } catch (NumberFormatException e) {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
@@ -97,7 +96,6 @@ public class HttpTaskServer {
                     InputStream stream = exchange.getRequestBody();
                     String body = new String(stream.readAllBytes(), DEFAULT_CHARSET);
                     Task task = gson.fromJson(body, Task.class);
-                    System.out.println(task.toString());
                     int taskId = task.getId();
                     if (taskId == 0) {
                         manager.addTask(task);
