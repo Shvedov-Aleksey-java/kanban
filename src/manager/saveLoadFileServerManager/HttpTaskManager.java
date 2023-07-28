@@ -33,28 +33,24 @@ public class HttpTaskManager extends FileBackedTasksManager {
         taskClient.saveState("epic", gson.toJson(mapEpic));
         taskClient.saveState("subtask", gson.toJson(mapSubtask));
     }
-
-    protected void load() {
-
-        super.tasks = gson.fromJson(taskClient.loadState("task"), MapTask.class).getTask();
-        super.epics = gson.fromJson(taskClient.loadState("epic"), MapEpic.class).getEpic();
-        super.subtasks = gson.fromJson(taskClient.loadState("subtask"), MapSubtask.class).getSubtask();
-
-    }
-
     @Override
-    public Task getTask(int id) {
-        load();
-        Task task = super.getTask(id);
-        return task;
+    public void load() {
+        MapTask mapTask = gson.fromJson(taskClient.loadState("task"), MapTask.class);
+        if (mapTask != null) {
+            tasks = mapTask.getTask();
+        }
+
+        MapEpic mapEpic = gson.fromJson(taskClient.loadState("epic"), MapEpic.class);
+        if (mapEpic != null) {
+            epics = mapEpic.getEpic();
+        }
+        MapSubtask mapSubtask = gson.fromJson(taskClient.loadState("subtask"), MapSubtask.class);
+        if (mapSubtask != null) {
+            subtasks = mapSubtask.getSubtask();
+        }
+
     }
 
-    @Override
-    public Integer addTask(Task task) {
-        int id = super.addTask(task);
-        save();
-        return id;
-    }
 
     private class MapTask {
         Map<Integer, Task> task = new HashMap<>();

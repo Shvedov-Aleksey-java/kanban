@@ -51,5 +51,5 @@ public interface TaskManager {
     public List<Task> getPrioritizedTasks();
 
 
-
+    void load();
 }

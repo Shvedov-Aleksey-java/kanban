@@ -15,6 +15,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
 public class HttpTaskServer {
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
@@ -32,6 +34,7 @@ public class HttpTaskServer {
 
     public void start() {
         httpServer.start();
+        manager.load();
     }
 
     public void stop() {
@@ -39,6 +42,7 @@ public class HttpTaskServer {
     }
 
     public void postsTasks(HttpExchange exchange) throws IOException {
+
         Endpoint endpoint = getEndpoint(exchange);
         String[] url = exchange.getRequestURI().getPath().split("/");
         String idString = exchange.getRequestURI().getQuery();
@@ -54,45 +58,47 @@ public class HttpTaskServer {
         }
         switch (endpoint) {
             case GET:
-                if (url.length == 3 && url[2].equals("task") && idString != null) {
+                if (url.length == 4 && url[2].equals("subtask") && url[3].equals("epic") && idString != null) {
+                    try {
+                        writeResponse(exchange, gson.toJson(manager.getEpicSubtasks(id)), 200);
+                    } catch (NumberFormatException e) {
+                        writeResponse(exchange, "Некорректный идентификатор поста", 400);
+                    }
+                } else if (url.length == 2 && url[1].equals("tasks")) {
+                    writeResponse(exchange, gson.toJson(manager.getPrioritizedTasks()), 200);
+                } else  if (url[2].equals("task") && idString != null) {
                     try {
                         String json = gson.toJson(manager.getTask(id));
                         writeResponse(exchange, json, 200);
                     } catch (NumberFormatException e) {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
                     }
-                } else if (url.length == 3 && url[2].equals("task")) {
+                } else if (url[2].equals("task")) {
                     String json = gson.toJson(manager.getTasks());
                     writeResponse(exchange, json, 200);
-                } else if (url.length == 3 && url[2].equals("epic")) {
+                } else if (url[2].equals("epic") && idString == null) {
                     writeResponse(exchange, gson.toJson(manager.getEpics()), 200);
-                } else if (url.length == 4 && idString != null && url[2].equals("epic")) {
+                } else if (url[2].equals("epic")) {
                     try {
                         writeResponse(exchange, gson.toJson(manager.getEpic(id)), 200);
                     } catch (NumberFormatException e) {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
                     }
-                } else if (url.length == 3 && url[2].equals("subtask")) {
+                } else if (url[2].equals("subtask") && idString == null) {
                     writeResponse(exchange, gson.toJson(manager.getSubtasks()), 200);
-                } else if (url.length == 4 && idString != null && url[2].equals("subtask")) {
+                } else if (url[2].equals("subtask")) {
                     try {
+
                         writeResponse(exchange, gson.toJson(manager.getSubtask(id)), 200);
                     } catch (NumberFormatException e) {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
                     }
-                } else if (url.length == 2 && url[1].equals("tasks")) {
-                    writeResponse(exchange, gson.toJson(manager.getPrioritizedTasks()), 200);
-                } else if (url.length == 5 && url[2].equals("subtask") && url[3].equals("epic") && idString != null) {
-                    try {
-                        writeResponse(exchange, gson.toJson(manager.getEpicSubtasks(id)), 200);
-                    } catch (NumberFormatException e) {
-                        writeResponse(exchange, "Некорректный идентификатор поста", 400);
-                    }
-                } else if (url.length == 3 && url[2].equals("history")) {
+                } else  if (url[2].equals("history")) {
                     writeResponse(exchange, gson.toJson(manager.getHistory()), 200);
                 }
+                break;
             case POST:
-                if (url.length == 3 && url[2].equals("task")) {
+                if (url[2].equals("task")) {
                     InputStream stream = exchange.getRequestBody();
                     String body = new String(stream.readAllBytes(), DEFAULT_CHARSET);
                     Task task = gson.fromJson(body, Task.class);
@@ -105,52 +111,55 @@ public class HttpTaskServer {
                         writeResponse(exchange, "задача обновлена", 200);
                     }
                     stream.close();
-                } else if (url.length == 3 && url[2].equals("epic")) {
+                } else if (url[2].equals("epic")) {
                     InputStream stream = exchange.getRequestBody();
                     String body = new String(stream.readAllBytes(), DEFAULT_CHARSET);
                     Epic task = gson.fromJson(body, Epic.class);
                     if (manager.getEpic(task.getId()) == null) {
                         manager.addEpic(task);
+                        writeResponse(exchange, "задача добавленна", 200);
                     } else {
                         manager.updateEpic(task);
+                        writeResponse(exchange, "задача добавленна", 200);
                     }
-                } else if (url.length == 3 && url[2].equals("subtask")) {
+                } else if (url[2].equals("subtask")) {
                     InputStream stream = exchange.getRequestBody();
                     String body = new String(stream.readAllBytes(), DEFAULT_CHARSET);
                     Subtask task = gson.fromJson(body, Subtask.class);
                     if (manager.getSubtask(task.getId()) == null) {
                         manager.addNewSubtask(task);
+                        writeResponse(exchange, "задача добавленна", 200);
                     } else {
                         manager.updateSubtask(task);
+                        writeResponse(exchange, "задача добавленна", 200);
                     }
-                    stream.close();
                 }
+                break;
             case DELETE:
-                if (url.length == 3 && url[2].equals("task")) {
+                if (url[2].equals("task") && idString == null) {
                     manager.clearTasks();
                     writeResponse(exchange, "Задачи удаленны", 201);
-                } else if (url.length == 4 && idString != null && url[2].equals("task")) {
+                } else if (url[2].equals("task")) {
                     try {
                         manager.deleteTask(id);
                         writeResponse(exchange, "Задача удаленна", 201);
                     } catch (NumberFormatException e) {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
                     }
-                } else if (url.length == 3 && url[2].equals("epic")) {
+                } else if (url[2].equals("epic") && idString == null) {
                     manager.clearEpics();
                     writeResponse(exchange, "Задачи удаленны", 201);
-                } else if (url.length == 4 && idString != null && url[2].equals("epic")) {
+                } else if (url[2].equals("epic")) {
                     try {
-
                         manager.deleteEpic(id);
                         writeResponse(exchange, "Задача удаленна", 201);
                     } catch (NumberFormatException e) {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
                     }
-                } else if (url.length == 3 && url[2].equals("subtask")) {
+                } else if (url[2].equals("subtask") && idString == null) {
                     manager.clearSubtasks();
                     writeResponse(exchange, "Задачи удаленны", 201);
-                } else if (url.length == 4 && idString != null && url[2].equals("subtask")) {
+                } else if (url[2].equals("subtask")) {
                     try {
                         manager.deleteSubtask(id);
                         writeResponse(exchange, "Задача удаленна", 201);
@@ -158,6 +167,7 @@ public class HttpTaskServer {
                         writeResponse(exchange, "Некорректный идентификатор поста", 400);
                     }
                 }
+                break;
             default:
                 writeResponse(exchange, "Такого эндпоинта не существует", 404);
         }
@@ -165,9 +175,6 @@ public class HttpTaskServer {
 
     }
 
-    private class Storage{
-
-    }
 
     private Endpoint getEndpoint(HttpExchange exchange) {
         switch (exchange.getRequestMethod()) {

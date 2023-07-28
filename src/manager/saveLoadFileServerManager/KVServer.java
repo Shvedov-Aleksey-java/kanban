@@ -44,11 +44,10 @@ public class KVServer {
                         h.sendResponseHeaders(400, 0);
                         return;
                 }
-                    String responseStr = "[]";
+                    String responseStr = "";
                     if (data.get(key) != null) {
                         responseStr = data.get(key);
-                    } else {
-                        responseStr = "not";
+
                     }
 
                 System.out.println(String.format("Отпровляем ответ: %s", responseStr));
