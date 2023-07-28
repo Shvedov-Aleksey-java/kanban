@@ -7,9 +7,7 @@ import task.Subtask;
 import task.Task;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class HttpTaskManager extends FileBackedTasksManager {
     Gson gson;
@@ -29,9 +27,13 @@ public class HttpTaskManager extends FileBackedTasksManager {
         mapEpic.setEpic(epics);
         MapSubtask mapSubtask = new MapSubtask();
         mapSubtask.setSubtask(subtasks);
+        ListHistory history = new ListHistory();
+        history.setHistory(historyManager.getHistory());
         taskClient.saveState("task", gson.toJson(mapTask));
         taskClient.saveState("epic", gson.toJson(mapEpic));
         taskClient.saveState("subtask", gson.toJson(mapSubtask));
+        taskClient.saveState("history", gson.toJson(history));
+
     }
     @Override
     public void load() {
@@ -48,9 +50,14 @@ public class HttpTaskManager extends FileBackedTasksManager {
         if (mapSubtask != null) {
             subtasks = mapSubtask.getSubtask();
         }
+        ListHistory history = gson.fromJson(taskClient.loadState("history"), ListHistory.class);
+        if (history != null && !history.getHistory().isEmpty()) {
+            for (Task task: history.getHistory()) {
+                historyManager.add(task);
+            }
+        }
 
     }
-
 
     private class MapTask {
         Map<Integer, Task> task = new HashMap<>();
@@ -145,6 +152,38 @@ public class HttpTaskManager extends FileBackedTasksManager {
 
         public void setSubtask(Map<Integer, Subtask> subtask) {
             this.subtask = subtask;
+        }
+    }
+
+    private class ListHistory{
+        List<Task> history = new ArrayList<>();
+
+        @Override
+        public String toString() {
+            return "ListHistory{" +
+                    "history=" + history +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ListHistory that = (ListHistory) o;
+            return Objects.equals(history, that.history);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(history);
+        }
+
+        public List<Task> getHistory() {
+            return history;
+        }
+
+        public void setHistory(List<Task> history) {
+            this.history = history;
         }
     }
 }
