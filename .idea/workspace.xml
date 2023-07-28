@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="978955d7-5b40-46ec-8499-d8caa3be5265" name="Changes" comment="mission final 7, trial 1.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$Endpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer$Endpoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/saveLoadFileServerManager/HttpTaskServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/manager/saveLoadFileServerManager/HttpTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/manager/saveLoadFileServerManager/HttpTaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/InMemoryTaskManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/manager/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/manager/saveLoadFileServerManager/HttpTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/manager/saveLoadFileServerManager/HttpTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/saveLoadFileServerManager/HttpTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -485,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690541267992</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="mission final 7, trial 1.">
+      <option name="closed" value="true" />
+      <created>1690544128521</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1690544128521</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
