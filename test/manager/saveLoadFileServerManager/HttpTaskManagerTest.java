@@ -12,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 
 class HttpTaskManagerTest{
 
@@ -758,9 +759,75 @@ class HttpTaskManagerTest{
 
     @Test
     void testGetEpicSubtasks() {
+        try {
+            new KVServer().start();
+            new HttpTaskServer().start();
+            URI url = URI.create("http://localhost:8080/tasks/epic/");
+            Gson gson = new Gson();
+            Epic newTask = new Epic("a", "s");
+            String json = gson.toJson(newTask);
+            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(url)
+                    .POST(body)
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+            HttpClient client1 = HttpClient.newHttpClient();
+            URI url1 = URI.create("http://localhost:8080/tasks/subtask/epic/?id=2");
+            HttpRequest request1 = HttpRequest.newBuilder().uri(url1).GET().build();
+            HttpResponse<String> response1 = client1.send(request1, HttpResponse.BodyHandlers.ofString());
+            String str = response1.body();
+            Assertions.assertEquals(str, "null");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    @Test
+    void methodsClassSubtask() {
+        try {
+            new KVServer().start();
+            new HttpTaskServer().start();
+            URI url = URI.create("http://localhost:8080/tasks/subtask/");
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(url)
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String str = response.body();
+            Assertions.assertFalse(str.isEmpty());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
 
+    @Test
+    void methodsClassEpic() {
+        try {
+            new KVServer().start();
+            new HttpTaskServer().start();
+            URI url = URI.create("http://localhost:8080/tasks/epic/");
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(url)
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String str = response.body();
+            Assertions.assertFalse(str.isEmpty());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
 }

@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,8 @@ public class HttpTaskServer {
         httpServer = HttpServer.create();
         httpServer.bind(new InetSocketAddress(PORT), 0);
         httpServer.createContext("/tasks", this::postsTasks);
+        httpServer.createContext("/tasks/subtask", this::methodsClassSubtask);
+        httpServer.createContext("/tasks/epic", this::methodsClassEpic);
         gson = new Gson();
     }
 
@@ -173,6 +176,16 @@ public class HttpTaskServer {
         }
 
 
+    }
+
+    public void methodsClassSubtask(HttpExchange exchange) throws IOException {
+        Class clazz = Subtask.class;
+        writeResponse(exchange, gson.toJson(Arrays.toString(clazz.getDeclaredMethods())), 200);
+    }
+
+    public void methodsClassEpic(HttpExchange exchange) throws IOException {
+        Class clazz = Epic.class;
+        writeResponse(exchange, gson.toJson(Arrays.toString(clazz.getDeclaredMethods())), 200);
     }
 
 
