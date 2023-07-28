@@ -1,4 +1,4 @@
-package manager.saveLoadFileServerManager;
+package manager.http;
 
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +12,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
 
 class HttpTaskManagerTest{
 

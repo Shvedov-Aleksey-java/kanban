@@ -1,6 +1,5 @@
-import manager.saveLoadFileServerManager.HttpTaskServer;
-import manager.saveLoadFileServerManager.KVServer;
-import manager.saveLoadFileServerManager.KVTaskClient;
+import manager.http.KVServer;
+import manager.http.KVTaskClient;
 
 import java.io.IOException;
 

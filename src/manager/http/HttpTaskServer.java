@@ -1,4 +1,4 @@
-package manager.saveLoadFileServerManager;
+package manager.http;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
@@ -16,13 +16,11 @@ import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 public class HttpTaskServer {
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
     private final Gson gson;
-    private TaskManager manager = Managers.getDefault();
+    private final TaskManager manager = Managers.getDefault();
     private final int PORT = 8080;
     private final HttpServer httpServer;
 

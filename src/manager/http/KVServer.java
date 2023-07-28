@@ -1,4 +1,4 @@
-package manager.saveLoadFileServerManager;
+package manager.http;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -33,26 +33,25 @@ public class KVServer {
                 h.sendResponseHeaders(403, 0);
                 return;
             }
-            if (!"GET".equals(h.getRequestMethod())) {
-                System.out.println("/load ждёт GET-запрос, а получил " + h.getRequestMethod());
-                h.sendResponseHeaders(405, 0);
-                return;
-            } else {
-                    String key = h.getRequestURI().getPath().substring("/load".length());
-                    if (key.isEmpty()) {
-                        System.out.println("Key для получения пустой. key указывается в пути: /save/{key}");
-                        h.sendResponseHeaders(400, 0);
-                        return;
+            if ("GET".equals(h.getRequestMethod())) {
+                String key = h.getRequestURI().getPath().substring("/load".length());
+                if (key.isEmpty()) {
+                    System.out.println("Key для сохранения пустой. key указывается в пути: /save/{key}");
+                    h.sendResponseHeaders(400, 0);
+                    return;
                 }
-                    String responseStr = "";
-                    if (data.get(key) != null) {
-                        responseStr = data.get(key);
-
-                    }
-
-                System.out.println(String.format("Отпровляем ответ: %s", responseStr));
-                    sendText(h, responseStr);
-
+                String value = readText(h);
+                if (value.isEmpty()) {
+                    System.out.println("Value для сохранения пустой. value указывается в теле запроса");
+                    h.sendResponseHeaders(400, 0);
+                    return;
+                }
+                sendText(h, data.get(key));
+                System.out.println("Значение для ключа " + key + " успешно обновлено!");
+                h.sendResponseHeaders(200, 0);
+            } else {
+                System.out.println("/load ждёт POST-запрос, а получил: " + h.getRequestMethod());
+                h.sendResponseHeaders(405, 0);
             }
         } finally {
             h.close();

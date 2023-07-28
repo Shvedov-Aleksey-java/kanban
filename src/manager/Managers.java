@@ -1,8 +1,7 @@
 package manager;
 
 
-import manager.saveLaodFileManager.FileBackedTasksManager;
-import manager.saveLoadFileServerManager.HttpTaskManager;
+import manager.http.HttpTaskManager;
 
 import java.io.File;
 

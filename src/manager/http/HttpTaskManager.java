@@ -1,4 +1,4 @@
-package manager.saveLoadFileServerManager;
+package manager.http;
 
 import com.google.gson.Gson;
 import manager.saveLaodFileManager.FileBackedTasksManager;
@@ -11,8 +11,8 @@ import java.util.*;
 
 
 public class HttpTaskManager extends FileBackedTasksManager {
-    Gson gson;
-    KVTaskClient taskClient;
+    private final Gson gson;
+    private final KVTaskClient taskClient;
 
     public HttpTaskManager(File file) {
         super(file);

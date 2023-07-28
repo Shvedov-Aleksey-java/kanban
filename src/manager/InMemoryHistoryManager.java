@@ -1,10 +1,7 @@
 package manager;
 
-import task.Progress;
-import task.Task;
-import task.TaskType;
 
-import java.io.Serializable;
+import task.Task;
 import java.util.*;
 
 
